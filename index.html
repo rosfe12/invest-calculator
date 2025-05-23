@@ -180,8 +180,8 @@
 
 <script>
 // --- Constants ---
-const LS_KEY_DATA = "investmentCalculatorData_v2_6_4";
-const LS_KEY_DARK_MODE = "investmentCalculatorDarkMode_v2_6_4";
+const LS_KEY_DATA = "investmentCalculatorData_v2_6_3"; // 이전 버전 유지 또는 필요시 변경
+const LS_KEY_DARK_MODE = "investmentCalculatorDarkMode_v2_6_3";
 const DATA_GO_KR_API_KEY = 'y0pPGOvyGt483NgWSHJx4MKR9B0iUY2a3kul4wYFxbyH85zaR2hDNdhY5OilDkfj%2F9M26UOZeUZJUTcZWmtB6Rw%3D%3D';
 
 // --- DOM Elements Cache ---
@@ -200,36 +200,40 @@ let appState = {
 let avgPriceChartInstance = null;
 let volumeChartInstance = null;
 let investmentPieChartInstance = null;
-let historicalPriceChartInstance = null; 
+let historicalPriceChartInstance = null;
 
 // --- Helper Functions ---
 function isDarkChartElement() { return document.body.classList.contains('dark'); }
 
 // --- Initialization ---
 document.addEventListener('DOMContentLoaded', () => { 
-  // Chart.js 주석 플러그인이 <head>에서 로드된 후, 그리고 다른 DOM 조작 전에 등록
+  // 1. Chart.js 주석 플러그인 등록 시도
   if (typeof Chart !== 'undefined' && typeof Chart.register === 'function' && typeof ChartJsPluginAnnotation !== 'undefined') {
     Chart.register(ChartJsPluginAnnotation);
     console.log('ChartJsPluginAnnotation registered successfully.');
   } else {
-    console.error('Chart 또는 Chart.register 또는 ChartJsPluginAnnotation이 정의되지 않았습니다. 스크립트 로드 순서 및 CDN 링크를 확인하세요.');
-    // dom 객체 초기화 전이므로 alert 사용 또는 플래그 설정
-    // alert('차트 플러그인 로드에 문제가 발생했습니다. 일부 기능이 제한될 수 있습니다.');
+    console.error('Chart 또는 Chart.register 또는 ChartJsPluginAnnotation이 정의되지 않았습니다! 스크립트 로드 순서 및 CDN 링크를 확인하세요.');
+    // 이 시점에는 dom 객체가 아직 초기화되지 않았으므로 alert를 사용하거나, 
+    // 아래 cacheDOMElements() 이후에 showNotification을 호출하도록 플래그를 설정할 수 있습니다.
+    // alert('차트 플러그인 로드에 문제가 발생했습니다. 일부 기능이 제한될 수 있습니다.'); 
   }
   
-  cacheDOMElements(); // dom 객체 초기화
+  // 2. DOM 요소 캐싱
+  cacheDOMElements(); 
   
-  // 플러그인 로드 실패 시 사용자 알림 (dom 객체 초기화 후)
+  // 3. 플러그인 로드 실패 시 사용자 알림 (dom 객체 초기화 후)
   if (typeof ChartJsPluginAnnotation === 'undefined' && dom.notificationArea) { 
       showNotification('차트 주석 플러그인 로드 실패. 일부 차트 기능이 제한될 수 있습니다.', 'error');
   }
 
+  // 4. 나머지 초기화 함수들 호출
   initializeFeeEventListeners();
   loadSettings();
   loadData();
   initializeCharts(); 
   updateDarkModeUI(localStorage.getItem(LS_KEY_DARK_MODE) === 'on');
   
+  // 5. 이벤트 리스너 등록
   if(dom.setFeesToZeroBtn) dom.setFeesToZeroBtn.addEventListener('click', setFeesToZeroAndRecalculate);
   
   if (dom.fetchPriceBtn) {
