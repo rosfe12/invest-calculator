@@ -338,7 +338,7 @@ function initializeFeeEventListeners() {
     });
 }
 
-ffunction loadSettings() {
+function loadSettings() {
     appState.fees.buyRate = parseFloat(dom.buyFeeRateInput.value) / 100 || 0;
     appState.fees.sellRate = parseFloat(dom.sellFeeRateInput.value) / 100 || 0;
     appState.fees.taxRate = parseFloat(dom.taxRateInput.value) / 100 || 0;
