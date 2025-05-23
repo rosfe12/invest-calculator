@@ -298,7 +298,7 @@ async function fetchHistoricalStockData(searchInput, daysToFetch) {
         searchParamKey = 'likeItmsNm'; searchTypeMsg = `종목명 '${trimmedInput}'`;
     }
     const apiNumOfRows = Math.max(daysToFetch + 10, 100); 
-    const apiUrl = `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=<span class="math-inline">\{DATA\_GO\_KR\_API\_KEY\}&numOfRows\=</span>{apiNumOfRows}&pageNo=1&resultType=json&<span class="math-inline">\{searchParamKey\}\=</span>{encodeURIComponent(trimmedInput)}&beginBasDt=<span class="math-inline">\{beginBasDt\}&endBasDt\=</span>{endBasDt}`;
+    const apiUrl = `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=${DATA_GO_KR_API_KEY}&numOfRows=${apiNumOfRows}&pageNo=1&resultType=json&${searchParamKey}=${encodeURIComponent(trimmedInput)}&beginBasDt=${beginBasDt}&endBasDt=${endBasDt}`;
     console.log(`[fetchHistoricalStockData] API URL: ${apiUrl}`);
     try {
         const response = await fetch(apiUrl);
