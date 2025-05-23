@@ -25,155 +25,155 @@
     "keywords": "물타기 계산기, 주식 계산기, 코인 계산기, 평균단가 계산기, 평단가 계산기, 투자 수익률 계산기, 수익률 계산기, 손익분기점 계산기, 추가매수 계산기, 주식 시세 조회, KRX 시세, 종목명 검색"
   }
   </script>
-  <style>
-    body { font-family: 'Noto Sans KR', sans-serif; padding: 20px; max-width: 800px; margin: auto; transition: background-color 0.3s, color 0.3s; }
-    section { border: 1px solid #ccc; border-radius: 8px; padding: 15px; margin-bottom: 20px; }
-    label { font-weight: bold; display: block; margin-top: 10px; }
-    input, button { margin: 5px 0; padding: 10px; width: 100%; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc; }
-    button { background-color: #4CAF50; color: white; cursor: pointer; border: none; }
-    button:hover { opacity: 0.9; }
-    button.secondary { background-color: #f0f0f0; color: #333; border: 1px solid #ccc; }
-    button:disabled { background-color: #ccc; cursor: not-allowed; }
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em; }
-    table, th, td { border: 1px solid #ccc; }
-    th { background: #f2f2f2; white-space: nowrap; }
-    td, th { padding: 6px; text-align: center; }
-    .positive { color: red; font-weight: bold; }
-    .negative { color: blue; font-weight: bold; }
-    canvas { margin-top: 20px; max-width: 100%; }
-    .buy-block { margin-bottom: 10px; padding: 10px; border: 1px dashed #aaa; border-radius: 6px; background: #f9f9f9; }
-    body.dark { background-color: #121212; color: #e0e0e0; }
-    body.dark section { background-color: #1e1e1e; border-color: #444; }
-    body.dark input, body.dark button.secondary { background-color: #2c2c2c; color: #fff; border: 1px solid #555; }
-    body.dark table, body.dark th, body.dark td { border-color: #555; }
-    body.dark th { background-color: #2a2a2a; }
-    body.dark .buy-block { background-color: #2a2a2a; border-color: #555; }
-    .notification { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; color: white; z-index: 1000; opacity: 0; transition: opacity 0.5s, bottom 0.5s; font-size: 0.9em; }
-    .notification.show { opacity: 1; bottom: 30px; }
-    .notification.success { background-color: #4CAF50; }
-    .notification.error { background-color: #f44336; }
-    .notification.info { background-color: #2196F3; }
-    .input-group { display: flex; gap: 10px; align-items: center; }
-    .input-group label { flex-basis: 120px; margin-top: 0; }
-    .input-group input { flex-grow: 1; }
-    #purchaseHistoryTableContainer table td, #purchaseHistoryTableContainer table th { font-size: 0.85em; padding: 5px;}
-    .intro-text { text-align: left; margin-bottom: 25px; padding: 10px 0; line-height: 1.6; font-size: 0.95em;}
-    body.dark .intro-text { color: #c0c0c0; }
-    .chart-container { position: relative; margin: 20px auto; width: 100%; }
-    #avgPriceChartContainer { height: 400px; max-width: 800px; }
-    #volumeChartContainer { height: 400px; max-width: 800px; margin-top: 40px; }
-    #investmentPieChartContainer { height: 400px; max-width: 600px; }
-    #priceComparisonChartContainer { height: 300px; max-width: 800px; }
-    @media (max-width: 600px) {
-      body { padding: 10px; } section { padding: 10px; } h1 { font-size: 1.5em; } h3 { font-size: 1.1em; }
-      input, button { font-size: 1em; padding: 12px 10px; } button { margin-top: 8px; }
-      table td, table th { font-size: 0.8em; padding: 4px; }
-      #purchaseHistoryTableContainer table td, #purchaseHistoryTableContainer table th { font-size: 0.75em; padding: 3px;}
-      .input-group { flex-direction: column; align-items: stretch; }
-      .input-group label { flex-basis: auto; margin-bottom: 5px; } .intro-text { font-size: 0.9em; }
-      #avgPriceChartContainer { height: 300px; } #volumeChartContainer { height: 300px; }
-      #investmentPieChartContainer { height: 300px; } #priceComparisonChartContainer { height: 250px; }
-    }
-  </style>
+  <style>
+    body { font-family: 'Noto Sans KR', sans-serif; padding: 20px; max-width: 800px; margin: auto; transition: background-color 0.3s, color 0.3s; }
+    section { border: 1px solid #ccc; border-radius: 8px; padding: 15px; margin-bottom: 20px; }
+    label { font-weight: bold; display: block; margin-top: 10px; }
+    input, button { margin: 5px 0; padding: 10px; width: 100%; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc; }
+    button { background-color: #4CAF50; color: white; cursor: pointer; border: none; }
+    button:hover { opacity: 0.9; }
+    button.secondary { background-color: #f0f0f0; color: #333; border: 1px solid #ccc; }
+    button:disabled { background-color: #ccc; cursor: not-allowed; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em; }
+    table, th, td { border: 1px solid #ccc; }
+    th { background: #f2f2f2; white-space: nowrap; }
+    td, th { padding: 6px; text-align: center; }
+    .positive { color: red; font-weight: bold; }
+    .negative { color: blue; font-weight: bold; }
+    canvas { margin-top: 20px; max-width: 100%; }
+    .buy-block { margin-bottom: 10px; padding: 10px; border: 1px dashed #aaa; border-radius: 6px; background: #f9f9f9; }
+    body.dark { background-color: #121212; color: #e0e0e0; }
+    body.dark section { background-color: #1e1e1e; border-color: #444; }
+    body.dark input, body.dark button.secondary { background-color: #2c2c2c; color: #fff; border: 1px solid #555; }
+    body.dark table, body.dark th, body.dark td { border-color: #555; }
+    body.dark th { background-color: #2a2a2a; }
+    body.dark .buy-block { background-color: #2a2a2a; border-color: #555; }
+    .notification { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; color: white; z-index: 1000; opacity: 0; transition: opacity 0.5s, bottom 0.5s; font-size: 0.9em; }
+    .notification.show { opacity: 1; bottom: 30px; }
+    .notification.success { background-color: #4CAF50; }
+    .notification.error { background-color: #f44336; }
+    .notification.info { background-color: #2196F3; }
+    .input-group { display: flex; gap: 10px; align-items: center; }
+    .input-group label { flex-basis: 120px; margin-top: 0; }
+    .input-group input { flex-grow: 1; }
+    #purchaseHistoryTableContainer table td, #purchaseHistoryTableContainer table th { font-size: 0.85em; padding: 5px;}
+    .intro-text { text-align: left; margin-bottom: 25px; padding: 10px 0; line-height: 1.6; font-size: 0.95em;}
+    body.dark .intro-text { color: #c0c0c0; }
+    .chart-container { position: relative; margin: 20px auto; width: 100%; }
+    #avgPriceChartContainer { height: 400px; max-width: 800px; }
+    #volumeChartContainer { height: 400px; max-width: 800px; margin-top: 40px; }
+    #investmentPieChartContainer { height: 400px; max-width: 600px; }
+    #priceComparisonChartContainer { height: 300px; max-width: 800px; }
+    @media (max-width: 600px) {
+      body { padding: 10px; } section { padding: 10px; } h1 { font-size: 1.5em; } h3 { font-size: 1.1em; }
+      input, button { font-size: 1em; padding: 12px 10px; } button { margin-top: 8px; }
+      table td, table th { font-size: 0.8em; padding: 4px; }
+      #purchaseHistoryTableContainer table td, #purchaseHistoryTableContainer table th { font-size: 0.75em; padding: 3px;}
+      .input-group { flex-direction: column; align-items: stretch; }
+      .input-group label { flex-basis: auto; margin-bottom: 5px; } .intro-text { font-size: 0.9em; }
+      #avgPriceChartContainer { height: 300px; } #volumeChartContainer { height: 300px; }
+      #investmentPieChartContainer { height: 300px; } #priceComparisonChartContainer { height: 250px; }
+    }
+  </style>
 </head>
 <body>
 
 <h1 style="text-align: center;">💸 투자 수익률 & 평균단가 분석 (Ver.2.6.) </h1>
 <div style="text-align: right; margin-bottom: 10px;">
-  <button id="darkModeBtn" onclick="toggleDarkMode()">🌙 다크모드 ON</button>
+  <button id="darkModeBtn" onclick="toggleDarkMode()">🌙 다크모드 ON</button>
 </div>
 <div class="intro-text">
-    본 계산기는 최초 매수 및 여러 차례의 추가 매수 시 변동되는 <strong>평균 단가, 총 투자금액, 예상 수익률, 그리고 매우 중요한 손익분기점(BEP)</strong> 등을 손쉽게 계산해 드립니다.<br>
-    또한, 입력된 매수 내역을 바탕으로 <strong>평균 단가 변동 추이, 회차별 매수량, 매수 금액 비중</strong>을 직관적인 차트로 시각화하여 투자 결정에 도움을 드립니다.<br>
-    수수료 및 세금 설정을 통해 실제 투자 환경과 유사한 조건에서 더욱 정확한 결과를 얻어보시고, <strong>전일 종가 조회 기능(종목코드/종목명 검색 지원)</strong>으로 현재가 입력의 편의성을 높여보세요!
+    본 계산기는 최초 매수 및 여러 차례의 추가 매수 시 변동되는 <strong>평균 단가, 총 투자금액, 예상 수익률, 그리고 매우 중요한 손익분기점(BEP)</strong> 등을 손쉽게 계산해 드립니다.<br>
+    또한, 입력된 매수 내역을 바탕으로 <strong>평균 단가 변동 추이, 회차별 매수량, 매수 금액 비중</strong>을 직관적인 차트로 시각화하여 투자 결정에 도움을 드립니다.<br>
+    수수료 및 세금 설정을 통해 실제 투자 환경과 유사한 조건에서 더욱 정확한 결과를 얻어보시고, <strong>전일 종가 조회 기능(종목코드/종목명 검색 지원)</strong>으로 현재가 입력의 편의성을 높여보세요!
 </div>
 
 <section id="settingsSection">
-    <h3>⚙️ 수수료 및 세금 설정</h3>
-    <div class="input-group"> <label for="buyFeeRate">매수 수수료 (%)</label> <input type="number" id="buyFeeRate" value="0.015" step="0.001" min="0"> </div>
-    <div class="input-group"> <label for="sellFeeRate">매도 수수료 (%)</label> <input type="number" id="sellFeeRate" value="0.015" step="0.001" min="0"> </div>
-    <div class="input-group"> <label for="taxRate">세금 (%)</label> <input type="number" id="taxRate" value="0.2" step="0.01" min="0"> </div>
-    <button id="setFeesToZeroBtn" class="secondary" style="margin-top: 10px;">수수료/세금 미적용 (0%로 설정)</button>
-    <small style="display:block; color:gray; margin-top:5px;"> ※ 국내 주식 기준 기본값 (증권사마다 다를 수 있으며, 세금은 국가/상품별로 상이) </small>
+    <h3>⚙️ 수수료 및 세금 설정</h3>
+    <div class="input-group"> <label for="buyFeeRate">매수 수수료 (%)</label> <input type="number" id="buyFeeRate" value="0.015" step="0.001" min="0"> </div>
+    <div class="input-group"> <label for="sellFeeRate">매도 수수료 (%)</label> <input type="number" id="sellFeeRate" value="0.015" step="0.001" min="0"> </div>
+    <div class="input-group"> <label for="taxRate">세금 (%)</label> <input type="number" id="taxRate" value="0.2" step="0.01" min="0"> </div>
+    <button id="setFeesToZeroBtn" class="secondary" style="margin-top: 10px;">수수료/세금 미적용 (0%로 설정)</button>
+    <small style="display:block; color:gray; margin-top:5px;"> ※ 국내 주식 기준 기본값 (증권사마다 다를 수 있으며, 세금은 국가/상품별로 상이) </small>
 </section>
 
 <section id="initialPurchaseSection">
-  <h3>① 최초 매수 입력</h3>
-  <div class="input-group"> <label for="initPrice">최초 매수가 (원)</label> <input type="number" id="initPrice" min="0"> </div>
-  <div class="input-group"> <label for="initAmount">최초 매수량 (주)</label> <input type="number" id="initAmount" min="1"> </div>
-  <button id="setInitialPurchaseBtn" onclick="setInitialPurchase()">✔ 최초 매수 입력</button>
-  <button id="clearInitialPurchaseBtn" class="secondary" onclick="clearInitialPurchase()">🧹 최초 매수 초기화</button>
+  <h3>① 최초 매수 입력</h3>
+  <div class="input-group"> <label for="initPrice">최초 매수가 (원)</label> <input type="number" id="initPrice" min="0"> </div>
+  <div class="input-group"> <label for="initAmount">최초 매수량 (주)</label> <input type="number" id="initAmount" min="1"> </div>
+  <button id="setInitialPurchaseBtn" onclick="setInitialPurchase()">✔ 최초 매수 입력</button>
+  <button id="clearInitialPurchaseBtn" class="secondary" onclick="clearInitialPurchase()">🧹 최초 매수 초기화</button>
 </section>
 
 <section>
-  <h3>② 추가 매수 입력</h3>
-  <div id="additionalInputs"></div>
-  <button onclick="addBuyBlock()">➕ 추가 매수 항목 추가</button>
-  <button class="secondary" onclick="clearAdditionalBuys()">➖ 추가 매수 전체 초기화</button>
+  <h3>② 추가 매수 입력</h3>
+  <div id="additionalInputs"></div>
+  <button onclick="addBuyBlock()">➕ 추가 매수 항목 추가</button>
+  <button class="secondary" onclick="clearAdditionalBuys()">➖ 추가 매수 전체 초기화</button>
 </section>
 
 <section>
-  <h3>③ 평균 단가 & 손익 계산</h3>
-  <div id="summaryResult"></div>
-  <div class="input-group" style="margin-top: 15px; margin-bottom: 5px;">
-    <label for="stockCodeInput" style="flex-basis: auto; margin-right: 10px;">종목코드/명:</label>
-    <input type="text" id="stockCodeInput" placeholder="종목코드(6자리) 또는 종목명 입력">
-  </div>
-  <div class="input-group" style="margin-top: 5px; margin-bottom: 5px;">
-    <label for="historicalDaysInput" style="flex-basis: auto; margin-right: 10px;">조회 기간(일):</label>
-    <input type="number" id="historicalDaysInput" value="90" min="1" max="365" style="width: 80px; flex-grow:0;"> 
-    <button id="fetchPriceBtn" class="secondary" style="width: auto; padding: 10px 15px; margin-left: 5px; flex-shrink: 0;">📈 기간시세 조회</button>
-  </div>
-  <div class="input-group">
-    <label for="currentPriceInput">현재(또는 기준) 주가 (원):</label>
-    <input type="number" id="currentPriceInput" min="0">
-  </div>
-  <small style="display:block; color:gray; margin-bottom:5px;"> ※ "기간시세 조회" 시 최신일 종가가 자동 입력됩니다. 직접 기준 주가를 입력할 수도 있습니다. </small>
-  <button onclick="calculateProfit()">📈 손익 계산</button>
-  <button class="secondary" onclick="clearProfitCalculation()">📉 손익 계산 초기화</button>
-  <div id="profitResultTable"></div>
-  <div id="breakEven" style="margin-top: 10px;"></div>
+  <h3>③ 평균 단가 & 손익 계산</h3>
+  <div id="summaryResult"></div>
+  <div class="input-group" style="margin-top: 15px; margin-bottom: 5px;">
+    <label for="stockCodeInput" style="flex-basis: auto; margin-right: 10px;">종목코드/명:</label>
+    <input type="text" id="stockCodeInput" placeholder="종목코드(6자리) 또는 종목명 입력">
+  </div>
+  <div class="input-group" style="margin-top: 5px; margin-bottom: 5px;">
+    <label for="historicalDaysInput" style="flex-basis: auto; margin-right: 10px;">조회 기간(일):</label>
+    <input type="number" id="historicalDaysInput" value="90" min="1" max="365" style="width: 80px; flex-grow:0;"> 
+    <button id="fetchPriceBtn" class="secondary" style="width: auto; padding: 10px 15px; margin-left: 5px; flex-shrink: 0;">📈 기간시세 조회</button>
+  </div>
+  <div class="input-group">
+    <label for="currentPriceInput">현재(또는 기준) 주가 (원):</label>
+    <input type="number" id="currentPriceInput" min="0">
+  </div>
+  <small style="display:block; color:gray; margin-bottom:5px;"> ※ "기간시세 조회" 시 최신일 종가가 자동 입력됩니다. 직접 기준 주가를 입력할 수도 있습니다. </small>
+  <button onclick="calculateProfit()">📈 손익 계산</button>
+  <button class="secondary" onclick="clearProfitCalculation()">📉 손익 계산 초기화</button>
+  <div id="profitResultTable"></div>
+  <div id="breakEven" style="margin-top: 10px;"></div>
 </section>
 
 <section>
-  <h3>④ 목표 수익률 기반 매도 가격 계산</h3>
-  <div class="input-group"> <label for="targetROI">목표 수익률 (%)</label> <input type="number" id="targetROI" min="0"> </div>
-  <button onclick="calculateTargetSellPrice()">🎯 매도 목표가 계산</button>
-  <div id="targetPriceResult"></div>
-  <div id="targetPriceTable"></div>
+  <h3>④ 목표 수익률 기반 매도 가격 계산</h3>
+  <div class="input-group"> <label for="targetROI">목표 수익률 (%)</label> <input type="number" id="targetROI" min="0"> </div>
+  <button onclick="calculateTargetSellPrice()">🎯 매도 목표가 계산</button>
+  <div id="targetPriceResult"></div>
+  <div id="targetPriceTable"></div>
 </section>
 
 <section id="purchaseHistorySection">
-  <h3>⑤ 상세 매수 내역</h3>
-  <div id="purchaseHistoryTableContainer"></div>
+  <h3>⑤ 상세 매수 내역</h3>
+  <div id="purchaseHistoryTableContainer"></div>
 </section>
 
 <section>
-  <h3>⑥ 기간별 시세 및 나의 평균단가 비교</h3>
-  <div class="chart-container" id="priceComparisonChartContainer"> 
-    <canvas id="priceComparisonChart"></canvas> 
-  </div>
+  <h3>⑥ 기간별 시세 및 나의 평균단가 비교</h3>
+  <div class="chart-container" id="priceComparisonChartContainer"> 
+    <canvas id="priceComparisonChart"></canvas> 
+  </div>
 </section>
 
 <section>
-  <h3>⑦ 데이터 저장 및 차트 시각화</h3>
-  <button onclick="saveData()">💾 데이터 저장</button>
-  <button class="secondary" onclick="loadData()">📂 불러오기</button>
-  <button onclick="downloadExcel()">📊 엑셀로 저장</button>
-  <button class="secondary" onclick="resetAllData()">🔄 전체 초기화</button>
+  <h3>⑦ 데이터 저장 및 차트 시각화</h3>
+  <button onclick="saveData()">💾 데이터 저장</button>
+  <button class="secondary" onclick="loadData()">📂 불러오기</button>
+  <button onclick="downloadExcel()">📊 엑셀로 저장</button>
+  <button class="secondary" onclick="resetAllData()">🔄 전체 초기화</button>
 </section>
 
 <div class="chart-container" id="avgPriceChartContainer">
-    <canvas id="avgPriceChart"></canvas>
+    <canvas id="avgPriceChart"></canvas>
 </div>
 <div class="chart-container" id="volumeChartContainer">
-    <canvas id="volumeChart"></canvas>
+    <canvas id="volumeChart"></canvas>
 </div>
 <section>
-  <h3>⑧ 투자 비중 (매수 금액 기준)</h3>
-  <div class="chart-container" id="investmentPieChartContainer">
-    <canvas id="investmentPieChart"></canvas>
-  </div>
+  <h3>⑧ 투자 비중 (매수 금액 기준)</h3>
+  <div class="chart-container" id="investmentPieChartContainer">
+    <canvas id="investmentPieChart"></canvas>
+  </div>
 </section>
 
 <div id="notificationArea" class="notification"></div>
@@ -189,646 +189,648 @@ const dom = {};
 
 // --- Application State ---
 let appState = {
-  purchases: [], avgBuyPrice: 0, totalAmount: 0, totalInvestedCost: 0,
-  fees: { buyRate: 0.00015, sellRate: 0.00015, taxRate: 0.002 },
-  currentPrice: 0, targetROI: 0,
-  fetchedStockInfo: { code: '', name: '', price: 0, date: '' },
-  historicalPrices: []
+  purchases: [], avgBuyPrice: 0, totalAmount: 0, totalInvestedCost: 0,
+  fees: { buyRate: 0.00015, sellRate: 0.00015, taxRate: 0.002 },
+  currentPrice: 0, targetROI: 0,
+  fetchedStockInfo: { code: '', name: '', price: 0, date: '' },
+  historicalPrices: []
 };
 
 // --- Chart Instances ---
 let avgPriceChartInstance = null;
 let volumeChartInstance = null;
 let investmentPieChartInstance = null;
-let historicalPriceChartInstance = null; 
+let historicalPriceChartInstance = null; 
 
 // --- Helper Functions ---
 function isDarkChartElement() { return document.body.classList.contains('dark'); }
 
 // --- Initialization ---
-document.addEventListener('DOMContentLoaded', () => { 
-  // 1. Chart.js 주석 플러그인 등록 시도 (DOM 로드 후, 다른 코드 실행 전)
-  if (typeof Chart !== 'undefined' && typeof Chart.register === 'function' && typeof ChartJsPluginAnnotation !== 'undefined') {
-    Chart.register(ChartJsPluginAnnotation);
-    console.log('ChartJsPluginAnnotation registered successfully.');
-  } else {
-    console.error('Chart 또는 Chart.register 또는 ChartJsPluginAnnotation이 정의되지 않았습니다. 스크립트 로드 순서 및 CDN 링크를 확인하세요.');
-    // dom.notificationArea는 아직 없으므로 alert 사용 또는 나중에 알림
-    // alert('차트 플러그인 로드에 문제가 발생했습니다.'); 
-  }
-  
-  // 2. DOM 요소 캐싱 (플러그인 등록 후 또는 병행)
-  cacheDOMElements(); 
-  
-  // 3. 플러그인 로드 실패 시 사용자 알림 (dom 객체 초기화 후)
-  if (typeof ChartJsPluginAnnotation === 'undefined' && dom.notificationArea) { 
-      showNotification('차트 주석 플러그인 로드 실패. 일부 차트 기능이 제한될 수 있습니다.', 'error');
-  }
+document.addEventListener('DOMContentLoaded', () => { 
+  // 1. Chart.js 주석 플러그인 등록 시도 (DOM 로드 후, 다른 코드 실행 전)
+  if (typeof Chart !== 'undefined' && typeof Chart.register === 'function' && typeof ChartJsPluginAnnotation !== 'undefined') {
+    Chart.register(ChartJsPluginAnnotation);
+    console.log('ChartJsPluginAnnotation registered successfully.');
+  } else {
+    console.error('Chart 또는 Chart.register 또는 ChartJsPluginAnnotation이 정의되지 않았습니다. 스크립트 로드 순서 및 CDN 링크를 확인하세요.');
+    // dom.notificationArea는 아직 없으므로 alert 사용 또는 나중에 알림
+    // alert('차트 플러그인 로드에 문제가 발생했습니다.'); 
+  }
+  
+  // 2. DOM 요소 캐싱 (플러그인 등록 후 또는 병행)
+  cacheDOMElements(); 
+  
+  // 3. 플러그인 로드 실패 시 사용자 알림 (dom 객체 초기화 후)
+  if (typeof ChartJsPluginAnnotation === 'undefined' && dom.notificationArea) { 
+      showNotification('차트 주석 플러그인 로드 실패. 일부 차트 기능이 제한될 수 있습니다.', 'error');
+  }
 
-  // 4. 나머지 초기화 함수들 호출
-  initializeFeeEventListeners();
-  loadSettings();
-  loadData();
-  initializeCharts(); 
-  updateDarkModeUI(localStorage.getItem(LS_KEY_DARK_MODE) === 'on');
-  
-  // 5. 이벤트 리스너 등록
-  if(dom.setFeesToZeroBtn) dom.setFeesToZeroBtn.addEventListener('click', setFeesToZeroAndRecalculate);
-  
-  if (dom.fetchPriceBtn) {
-      dom.fetchPriceBtn.addEventListener('click', async () => {
-          const searchInput = dom.stockCodeInput.value.trim();
-          const daysValue = parseInt(dom.historicalDaysInput.value);
-          if (!searchInput) {
-              showNotification('종목코드 또는 종목명을 입력해주세요.', 'error'); return;
-          }
-          if (isNaN(daysValue) || daysValue < 1 || daysValue > 365) {
-              showNotification('조회 기간은 1일에서 365일 사이로 입력해주세요.', 'error'); return;
-          }
-          await fetchHistoricalStockData(searchInput, daysValue); 
-      });
-  }
+  // 4. 나머지 초기화 함수들 호출
+  initializeFeeEventListeners();
+  loadSettings();
+  loadData();
+  initializeCharts(); 
+  updateDarkModeUI(localStorage.getItem(LS_KEY_DARK_MODE) === 'on');
+  
+  // 5. 이벤트 리스너 등록
+  if(dom.setFeesToZeroBtn) dom.setFeesToZeroBtn.addEventListener('click', setFeesToZeroAndRecalculate);
+  
+  if (dom.fetchPriceBtn) {
+      dom.fetchPriceBtn.addEventListener('click', async () => {
+          const searchInput = dom.stockCodeInput.value.trim();
+          const daysValue = parseInt(dom.historicalDaysInput.value);
+          if (!searchInput) {
+              showNotification('종목코드 또는 종목명을 입력해주세요.', 'error'); return;
+          }
+          if (isNaN(daysValue) || daysValue < 1 || daysValue > 365) {
+              showNotification('조회 기간은 1일에서 365일 사이로 입력해주세요.', 'error'); return;
+          }
+          await fetchHistoricalStockData(searchInput, daysValue); 
+      });
+  }
 });
 
 function cacheDOMElements() {
-  dom.buyFeeRateInput = document.getElementById('buyFeeRate');
-  dom.sellFeeRateInput = document.getElementById('sellFeeRate');
-  dom.taxRateInput = document.getElementById('taxRate');
-  dom.setFeesToZeroBtn = document.getElementById('setFeesToZeroBtn');
-  dom.initPriceInput = document.getElementById('initPrice');
-  dom.initAmountInput = document.getElementById('initAmount');
-  dom.setInitialPurchaseBtn = document.getElementById('setInitialPurchaseBtn');
-  dom.clearInitialPurchaseBtn = document.getElementById('clearInitialPurchaseBtn');
-  dom.initialPurchaseSection = document.getElementById('initialPurchaseSection');
-  dom.additionalInputsContainer = document.getElementById('additionalInputs');
-  dom.summaryResultDiv = document.getElementById('summaryResult');
-  dom.stockCodeInput = document.getElementById('stockCodeInput');
-  dom.historicalDaysInput = document.getElementById('historicalDaysInput');
-  dom.fetchPriceBtn = document.getElementById('fetchPriceBtn');
-  dom.currentPriceInput = document.getElementById('currentPriceInput');
-  dom.profitResultTableDiv = document.getElementById('profitResultTable');
-  dom.breakEvenDiv = document.getElementById('breakEven');
-  dom.targetROIInput = document.getElementById('targetROI');
-  dom.targetPriceResultDiv = document.getElementById('targetPriceResult');
-  dom.targetPriceTableDiv = document.getElementById('targetPriceTable');
-  dom.notificationArea = document.getElementById('notificationArea');
-  dom.darkModeBtn = document.getElementById('darkModeBtn');
-  dom.avgPriceChartCanvas = document.getElementById('avgPriceChart');
-  dom.volumeChartCanvas = document.getElementById('volumeChart');
-  dom.investmentPieChartCanvas = document.getElementById('investmentPieChart');
-  dom.purchaseHistoryTableContainer = document.getElementById('purchaseHistoryTableContainer');
-  dom.priceComparisonChartCanvas = document.getElementById('priceComparisonChart'); 
+  dom.buyFeeRateInput = document.getElementById('buyFeeRate');
+  dom.sellFeeRateInput = document.getElementById('sellFeeRate');
+  dom.taxRateInput = document.getElementById('taxRate');
+  dom.setFeesToZeroBtn = document.getElementById('setFeesToZeroBtn');
+  dom.initPriceInput = document.getElementById('initPrice');
+  dom.initAmountInput = document.getElementById('initAmount');
+  dom.setInitialPurchaseBtn = document.getElementById('setInitialPurchaseBtn');
+  dom.clearInitialPurchaseBtn = document.getElementById('clearInitialPurchaseBtn');
+  dom.initialPurchaseSection = document.getElementById('initialPurchaseSection');
+  dom.additionalInputsContainer = document.getElementById('additionalInputs');
+  dom.summaryResultDiv = document.getElementById('summaryResult');
+  dom.stockCodeInput = document.getElementById('stockCodeInput');
+  dom.historicalDaysInput = document.getElementById('historicalDaysInput');
+  dom.fetchPriceBtn = document.getElementById('fetchPriceBtn');
+  dom.currentPriceInput = document.getElementById('currentPriceInput');
+  dom.profitResultTableDiv = document.getElementById('profitResultTable');
+  dom.breakEvenDiv = document.getElementById('breakEven');
+  dom.targetROIInput = document.getElementById('targetROI');
+  dom.targetPriceResultDiv = document.getElementById('targetPriceResult');
+  dom.targetPriceTableDiv = document.getElementById('targetPriceTable');
+  dom.notificationArea = document.getElementById('notificationArea');
+  dom.darkModeBtn = document.getElementById('darkModeBtn');
+  dom.avgPriceChartCanvas = document.getElementById('avgPriceChart');
+  dom.volumeChartCanvas = document.getElementById('volumeChart');
+  dom.investmentPieChartCanvas = document.getElementById('investmentPieChart');
+  dom.purchaseHistoryTableContainer = document.getElementById('purchaseHistoryTableContainer');
+  dom.priceComparisonChartCanvas = document.getElementById('priceComparisonChart'); 
 }
 
 async function fetchHistoricalStockData(searchInput, daysToFetch) {
-    showNotification('기간 시세 조회 중...', 'info');
-    const today = new Date();
-    const endDate = new Date(today);
-    endDate.setDate(today.getDate() - 1); 
-    const startDate = new Date(today);
-    startDate.setDate(today.getDate() - daysToFetch); 
-    const endBasDt = `<span class="math-inline">\{endDate\.getFullYear\(\)\}</span>{(endDate.getMonth() + 1).toString().padStart(2, '0')}${endDate.getDate().toString().padStart(2, '0')}`;
-    const beginBasDt = `<span class="math-inline">\{startDate\.getFullYear\(\)\}</span>{(startDate.getMonth() + 1).toString().padStart(2, '0')}${startDate.getDate().toString().padStart(2, '0')}`;
-    let searchParamKey = '';
-    let searchTypeMsg = '';
-    const trimmedInput = searchInput.trim();
-    if (/^\d{6}$/.test(trimmedInput)) {
-        searchParamKey = 'likeSrtnCd'; searchTypeMsg = `코드 ${trimmedInput}`;
-    } else {
-        searchParamKey = 'likeItmsNm'; searchTypeMsg = `종목명 '${trimmedInput}'`;
-    }
-    const apiNumOfRows = Math.max(daysToFetch + 10, 100); 
-    const apiUrl = `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=${DATA_GO_KR_API_KEY}&numOfRows=${apiNumOfRows}&pageNo=1&resultType=json&${searchParamKey}=${encodeURIComponent(trimmedInput)}&beginBasDt=${beginBasDt}&endBasDt=${endBasDt}`;
-    console.log(`[fetchHistoricalStockData] API URL: ${apiUrl}`);
-    try {
-        const response = await fetch(apiUrl);
-        const responseText = await response.clone().text();
-        console.log(`[fetchHistoricalStockData] API Raw Response:`, responseText.substring(0, 800));
-        if (!response.ok) { throw new Error(`API 요청 실패(${response.status}). 응답: ${responseText.substring(0, 200)}`); }
-        if (responseText.trim().startsWith('<')) {
-            console.warn(`API가 XML 응답을 반환. 내용: ${responseText.substring(0, 200)}...`);
-            if (responseText.includes("SERVICE_KEY_IS_NOT_REGISTERED_ERROR")) { showNotification('API 키 오류: 서비스 키가 등록되지 않았거나 유효하지 않습니다.', 'error'); }
-            else if (responseText.includes("NODATA_ERROR") || responseText.includes("HTTP ERROR") || responseText.includes("데이터가 없습니다.")) { 
-                 showNotification(`<span class="math-inline">\{searchTypeMsg\}에 대한 기간 내\(</span>{beginBasDt}~${endBasDt}) 거래 정보가 없습니다.`, 'error');
-            } else { showNotification('API로부터 예상치 못한 XML 응답을 받았습니다.', 'error'); }
-            appState.historicalPrices = []; appState.fetchedStockInfo = { code: trimmedInput, name: '', price: 0, date: '' };
-            appState.currentPrice = 0; if(dom.currentPriceInput) dom.currentPriceInput.value = '';
-            recalculateAndUpdateUI(); return;
-        }
-        const data = JSON.parse(responseText);
-        console.log(`[fetchHistoricalStockData] API Parsed Data:`, data);
-        if (data.response && data.response.header && data.response.header.resultCode === '00') {
-            if (data.response.body && data.response.body.totalCount > 0 && data.response.body.items && data.response.body.items.item) {
-                let items = Array.isArray(data.response.body.items.item) ? data.response.body.items.item : [data.response.body.items.item];
-                items.sort((a, b) => parseInt(a.basDt) - parseInt(b.basDt)); 
-                appState.historicalPrices = items.filter(item => item.clpr && String(item.clpr).trim() !== '' && !isNaN(parseFloat(item.clpr))).map(item => ({ date: item.basDt, price: parseFloat(item.clpr) }));
-                if (appState.historicalPrices.length > 0) {
-                    const latestData = appState.historicalPrices[appState.historicalPrices.length - 1];
-                    const firstValidItemFromApi = items.find(item => item.srtnCd && item.itmsNm);
-                    appState.currentPrice = latestData.price; dom.currentPriceInput.value = latestData.price;
-                    appState.fetchedStockInfo = { code: firstValidItemFromApi ? firstValidItemFromApi.srtnCd : trimmedInput, name: firstValidItemFromApi ? firstValidItemFromApi.itmsNm : (searchParamKey === 'likeItmsNm' ? trimmedInput : ''), price: latestData.price, date: latestData.date };
-                     if (searchParamKey === 'likeItmsNm' && appState.fetchedStockInfo.code && dom.stockCodeInput.value.toUpperCase() !== appState.fetchedStockInfo.code.toUpperCase()) { dom.stockCodeInput.value = appState.fetchedStockInfo.code; }
-                    showNotification(`<span class="math-inline">\{appState\.fetchedStockInfo\.name\}\(</span>{appState.fetchedStockInfo.code}) ${appState.historicalPrices.length}일간 시세 로드 완료. 최신 종가: <span class="math-inline">\{latestData\.price\.toLocaleString\(\)\}원 \(</span>{latestData.date} 기준)`, 'success');
-                } else { showNotification(`${searchTypeMsg} 기간 내 유효한 시세 정보를 처리할 수 없습니다.`, 'error'); appState.historicalPrices = []; }
-            } else { showNotification(`<span class="math-inline">\{searchTypeMsg\}에 대한 기간 내\(</span>{beginBasDt}~${endBasDt}) 거래 정보가 없습니다. (totalCount 0 또는 items 없음)`, 'error'); appState.historicalPrices = []; }
-        } else if (data.response && data.response.header) {
-            const errCode = data.response.header.resultCode; const errMsg = data.response.header.resultMsg;
-            if (['03', '12', '20', '22', '30', '31', '32'].includes(errCode)) { showNotification(`API 오류 (${errCode}): ${errMsg}. (조회 중단)`, 'error'); }
-            else { showNotification(`<span class="math-inline">\{searchTypeMsg\} 정보 조회 중 API 응답 \(</span>{errCode}): ${errMsg}. 데이터가 없을 수 있습니다.`, 'error'); }
-            appState.historicalPrices = [];
-        } else { throw new Error('유효하지 않은 API 응답 구조입니다.'); }
-    } catch (error) {
-        console.error(`[fetchHistoricalStockData] 최종 오류:`, error);
-        showNotification(`기간 시세 조회 중 오류: ${error.message}. (콘솔 확인)`, 'error');
-        appState.historicalPrices = [];
-    }
-    if (appState.historicalPrices.length === 0) {
-        appState.fetchedStockInfo = { code: trimmedInput, name: '', price: 0, date: '' };
-        appState.currentPrice = 0; if(dom.currentPriceInput) dom.currentPriceInput.value = '';
-    }
-    recalculateAndUpdateUI();
+    showNotification('기간 시세 조회 중...', 'info');
+    const today = new Date();
+    const endDate = new Date(today);
+    endDate.setDate(today.getDate() - 1); 
+    const startDate = new Date(today);
+    startDate.setDate(today.getDate() - daysToFetch); 
+    const endBasDt = `${endDate.getFullYear()}${(endDate.getMonth() + 1).toString().padStart(2, '0')}${endDate.getDate().toString().padStart(2, '0')}`;
+    const beginBasDt = `${startDate.getFullYear()}${(startDate.getMonth() + 1).toString().padStart(2, '0')}${startDate.getDate().toString().padStart(2, '0')}`;
+    let searchParamKey = '';
+    let searchTypeMsg = '';
+    const trimmedInput = searchInput.trim();
+    if (/^\d{6}$/.test(trimmedInput)) {
+        searchParamKey = 'likeSrtnCd'; searchTypeMsg = `코드 ${trimmedInput}`;
+    } else {
+        searchParamKey = 'likeItmsNm'; searchTypeMsg = `종목명 '${trimmedInput}'`;
+    }
+    const apiNumOfRows = Math.max(daysToFetch + 10, 100); 
+    const apiUrl = `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=${DATA_GO_KR_API_KEY}&numOfRows=${apiNumOfRows}&pageNo=1&resultType=json&${searchParamKey}=${encodeURIComponent(trimmedInput)}&beginBasDt=${beginBasDt}&endBasDt=${endBasDt}`;
+    console.log(`[fetchHistoricalStockData] API URL: ${apiUrl}`);
+    try {
+        const response = await fetch(apiUrl);
+        const responseText = await response.clone().text();
+        console.log(`[fetchHistoricalStockData] API Raw Response:`, responseText.substring(0, 800));
+        if (!response.ok) { throw new Error(`API 요청 실패(${response.status}). 응답: ${responseText.substring(0, 200)}`); }
+        if (responseText.trim().startsWith('<')) {
+            console.warn(`API가 XML 응답을 반환. 내용: ${responseText.substring(0, 200)}...`);
+            if (responseText.includes("SERVICE_KEY_IS_NOT_REGISTERED_ERROR")) { showNotification('API 키 오류: 서비스 키가 등록되지 않았거나 유효하지 않습니다.', 'error'); }
+            else if (responseText.includes("NODATA_ERROR") || responseText.includes("HTTP ERROR") || responseText.includes("데이터가 없습니다.")) { 
+                 showNotification(`${searchTypeMsg}에 대한 기간 내(${beginBasDt}~${endBasDt}) 거래 정보가 없습니다.`, 'error');
+            } else { showNotification('API로부터 예상치 못한 XML 응답을 받았습니다.', 'error'); }
+            appState.historicalPrices = []; appState.fetchedStockInfo = { code: trimmedInput, name: '', price: 0, date: '' };
+            appState.currentPrice = 0; if(dom.currentPriceInput) dom.currentPriceInput.value = '';
+            recalculateAndUpdateUI(); return;
+        }
+        const data = JSON.parse(responseText);
+        console.log(`[fetchHistoricalStockData] API Parsed Data:`, data);
+        if (data.response && data.response.header && data.response.header.resultCode === '00') {
+            if (data.response.body && data.response.body.totalCount > 0 && data.response.body.items && data.response.body.items.item) {
+                let items = Array.isArray(data.response.body.items.item) ? data.response.body.items.item : [data.response.body.items.item];
+                items.sort((a, b) => parseInt(a.basDt) - parseInt(b.basDt)); 
+                appState.historicalPrices = items.filter(item => item.clpr && String(item.clpr).trim() !== '' && !isNaN(parseFloat(item.clpr))).map(item => ({ date: item.basDt, price: parseFloat(item.clpr) }));
+                if (appState.historicalPrices.length > 0) {
+                    const latestData = appState.historicalPrices[appState.historicalPrices.length - 1];
+                    const firstValidItemFromApi = items.find(item => item.srtnCd && item.itmsNm);
+                    appState.currentPrice = latestData.price; dom.currentPriceInput.value = latestData.price;
+                    appState.fetchedStockInfo = { code: firstValidItemFromApi ? firstValidItemFromApi.srtnCd : trimmedInput, name: firstValidItemFromApi ? firstValidItemFromApi.itmsNm : (searchParamKey === 'likeItmsNm' ? trimmedInput : ''), price: latestData.price, date: latestData.date };
+                     if (searchParamKey === 'likeItmsNm' && appState.fetchedStockInfo.code && dom.stockCodeInput.value.toUpperCase() !== appState.fetchedStockInfo.code.toUpperCase()) { dom.stockCodeInput.value = appState.fetchedStockInfo.code; }
+                    showNotification(`${appState.fetchedStockInfo.name}(${appState.fetchedStockInfo.code}) ${appState.historicalPrices.length}일간 시세 로드 완료. 최신 종가: ${latestData.price.toLocaleString()}원 (${latestData.date} 기준)`, 'success');
+                } else { showNotification(`${searchTypeMsg} 기간 내 유효한 시세 정보를 처리할 수 없습니다.`, 'error'); appState.historicalPrices = []; }
+            } else { showNotification(`${searchTypeMsg}에 대한 기간 내(${beginBasDt}~${endBasDt}) 거래 정보가 없습니다. (totalCount 0 또는 items 없음)`, 'error'); appState.historicalPrices = []; }
+        } else if (data.response && data.response.header) {
+            const errCode = data.response.header.resultCode; const errMsg = data.response.header.resultMsg;
+            if (['03', '12', '20', '22', '30', '31', '32'].includes(errCode)) { showNotification(`API 오류 (${errCode}): ${errMsg}. (조회 중단)`, 'error'); }
+            else { showNotification(`${searchTypeMsg} 정보 조회 중 API 응답 (${errCode}): ${errMsg}. 데이터가 없을 수 있습니다.`, 'error'); }
+            appState.historicalPrices = [];
+        } else { throw new Error('유효하지 않은 API 응답 구조입니다.'); }
+    } catch (error) {
+        console.error(`[fetchHistoricalStockData] 최종 오류:`, error);
+        showNotification(`기간 시세 조회 중 오류: ${error.message}. (콘솔 확인)`, 'error');
+        appState.historicalPrices = [];
+    }
+    if (appState.historicalPrices.length === 0) {
+        appState.fetchedStockInfo = { code: trimmedInput, name: '', price: 0, date: '' };
+        appState.currentPrice = 0; if(dom.currentPriceInput) dom.currentPriceInput.value = '';
+    }
+    recalculateAndUpdateUI();
 }
 
 function initializeFeeEventListeners() {
-    ['buyFeeRateInput', 'sellFeeRateInput', 'taxRateInput'].forEach(key => {
-        const inputElement = dom[key];
-        if (inputElement) {
-            inputElement.addEventListener('change', () => {
-                appState.fees.buyRate = parseFloat(dom.buyFeeRateInput.value) / 100 || 0;
-                appState.fees.sellRate = parseFloat(dom.sellFeeRateInput.value) / 100 || 0;
-                appState.fees.taxRate = parseFloat(dom.taxRateInput.value) / 100 || 0;
-                recalculateAndUpdateUI();
-                showNotification('수수료/세금 설정이 변경되었습니다.', 'info');
-            });
-        }
-    });
+    ['buyFeeRateInput', 'sellFeeRateInput', 'taxRateInput'].forEach(key => {
+        const inputElement = dom[key];
+        if (inputElement) {
+            inputElement.addEventListener('change', () => {
+                appState.fees.buyRate = parseFloat(dom.buyFeeRateInput.value) / 100 || 0;
+                appState.fees.sellRate = parseFloat(dom.sellFeeRateInput.value) / 100 || 0;
+                appState.fees.taxRate = parseFloat(dom.taxRateInput.value) / 100 || 0;
+                recalculateAndUpdateUI();
+                showNotification('수수료/세금 설정이 변경되었습니다.', 'info');
+            });
+        }
+    });
 }
 function loadSettings() {
-    appState.fees.buyRate = parseFloat(dom.buyFeeRateInput.value) / 100 || 0;
-    appState.fees.sellRate = parseFloat(dom.sellFeeRateInput.value) / 100 || 0;
-    appState.fees.taxRate = parseFloat(dom.taxRateInput.value) / 100 || 0;
+    appState.fees.buyRate = parseFloat(dom.buyFeeRateInput.value) / 100 || 0;
+    appState.fees.sellRate = parseFloat(dom.sellFeeRateInput.value) / 100 || 0;
+    appState.fees.taxRate = parseFloat(dom.taxRateInput.value) / 100 || 0;
 }
 function setFeesToZeroAndRecalculate() {
-  dom.buyFeeRateInput.value = '0'; dom.sellFeeRateInput.value = '0'; dom.taxRateInput.value = '0';
-  appState.fees.buyRate = 0; appState.fees.sellRate = 0; appState.fees.taxRate = 0;
-  recalculateAndUpdateUI(); showNotification('수수료 및 세금이 0%로 설정되어 재계산되었습니다.', 'info');
+  dom.buyFeeRateInput.value = '0'; dom.sellFeeRateInput.value = '0'; dom.taxRateInput.value = '0';
+  appState.fees.buyRate = 0; appState.fees.sellRate = 0; appState.fees.taxRate = 0;
+  recalculateAndUpdateUI(); showNotification('수수료 및 세금이 0%로 설정되어 재계산되었습니다.', 'info');
 }
 function recalculateAndUpdateUI() {
-    updateAggregates(); renderSummary(); renderPurchaseHistoryTable();
-    if (appState.purchases.length > 0) {
-        if (dom.currentPriceInput.value || appState.currentPrice > 0) { calculateProfit(); } else { clearProfitCalculation(); }
-        if (dom.targetROIInput.value || appState.targetROI !== 0) { calculateTargetSellPrice(); } else { clearTargetPriceCalculation(); }
-    } else { clearProfitCalculation(); clearTargetPriceCalculation(); }
-    updateCharts();
+    updateAggregates(); renderSummary(); renderPurchaseHistoryTable();
+    if (appState.purchases.length > 0) {
+        if (dom.currentPriceInput.value || appState.currentPrice > 0) { calculateProfit(); } else { clearProfitCalculation(); }
+        if (dom.targetROIInput.value || appState.targetROI !== 0) { calculateTargetSellPrice(); } else { clearTargetPriceCalculation(); }
+    } else { clearProfitCalculation(); clearTargetPriceCalculation(); }
+    updateCharts();
 }
 function showNotification(message, type = 'info', duration = 3000) {
-  if (!dom.notificationArea) { 
-      console.warn("Notification area (dom.notificationArea) is not cached or available yet. Message:", message);
-      // alert(message); // 최후의 수단
-      return; 
-  }
-  dom.notificationArea.textContent = message;
-  dom.notificationArea.className = `notification ${type} show`;
-  setTimeout(() => { if(dom.notificationArea) dom.notificationArea.classList.remove('show'); }, duration);
+  if (!dom.notificationArea) { 
+      console.warn("Notification area (dom.notificationArea) is not cached or available yet. Message:", message);
+      // alert(message); // 최후의 수단
+      return; 
+  }
+  dom.notificationArea.textContent = message;
+  dom.notificationArea.className = `notification ${type} show`;
+  setTimeout(() => { if(dom.notificationArea) dom.notificationArea.classList.remove('show'); }, duration);
 }
 function renderSummary() {
-  if (!dom.summaryResultDiv) return;
-  if (appState.purchases.length === 0) { dom.summaryResultDiv.innerHTML = '매수 내역이 없습니다.'; return; }
-  dom.summaryResultDiv.innerHTML = ` 총 보유 수량: ${appState.totalAmount.toLocaleString()} 주<br> 평균 매수 단가 (수수료 포함): ${appState.avgBuyPrice.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})} 원<br> 총 투자 원금 (수수료 포함): ${appState.totalInvestedCost.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})} 원`;
+  if (!dom.summaryResultDiv) return;
+  if (appState.purchases.length === 0) { dom.summaryResultDiv.innerHTML = '매수 내역이 없습니다.'; return; }
+  dom.summaryResultDiv.innerHTML = ` 총 보유 수량: ${appState.totalAmount.toLocaleString()} 주<br> 평균 매수 단가 (수수료 포함): ${appState.avgBuyPrice.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})} 원<br> 총 투자 원금 (수수료 포함): ${appState.totalInvestedCost.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})} 원`;
 }
 function renderPurchaseHistoryTable() {
-    if (!dom.purchaseHistoryTableContainer) return;
-    if (appState.purchases.length === 0) { dom.purchaseHistoryTableContainer.innerHTML = '<p style="text-align:center; color:grey;">상세 매수 내역이 없습니다.</p>'; return; }
-    let tableHTML = `<table class="purchase-history-table"><thead><tr><th>회차</th><th>매수가(원)</th><th>수량(주)</th><th>매수금액(원)<br><small>(수수료 미포함)</small></th><th>수수료(원)</th><th>총매수금액(원)<br><small>(수수료 포함)</small></th><th>매수후<br>누적평단가(원)</th><th>매수후<br>누적수량(주)</th><th>매수후<br>누적총원금(원)</th></tr></thead><tbody>`;
-    let cumulativeAmount = 0; let cumulativeInvestedCost = 0;
-    appState.purchases.forEach((p, index) => {
-        const purchaseName = index === 0 ? `최초` : `추가 ${index}`;
-        const purchaseCostNoFee = p.price * p.amount;
-        const buyFeeAmount = purchaseCostNoFee * appState.fees.buyRate;
-        const tempCumulativeAmount = cumulativeAmount + p.amount;
-        const tempCumulativeInvestedCost = cumulativeInvestedCost + p.costWithFee;
-        const currentPurchaseCumulativeAvgPrice = tempCumulativeAmount > 0 ? tempCumulativeInvestedCost / tempCumulativeAmount : 0;
-        tableHTML += `<tr>
-        <td>${purchaseName}</td><td>${p.price.toLocaleString()}</td><td>${p.amount.toLocaleString()}</td>
-        <td>${purchaseCostNoFee.toLocaleString('ko-KR', {minimumFractionDigits: 0, maximumFractionDigits: 0})}</td>
-        <td>${buyFeeAmount.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-        <td>${p.costWithFee.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-        <td>${currentPurchaseCumulativeAvgPrice.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-        <td>${tempCumulativeAmount.toLocaleString()}</td>
-        <td>${tempCumulativeInvestedCost.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>`;     
-        cumulativeAmount = tempCumulativeAmount; cumulativeInvestedCost = tempCumulativeInvestedCost;
-    });
-    tableHTML += `</tbody></table>`; dom.purchaseHistoryTableContainer.innerHTML = tableHTML;
+    if (!dom.purchaseHistoryTableContainer) return;
+    if (appState.purchases.length === 0) { dom.purchaseHistoryTableContainer.innerHTML = '<p style="text-align:center; color:grey;">상세 매수 내역이 없습니다.</p>'; return; }
+    let tableHTML = `<table class="purchase-history-table"><thead><tr><th>회차</th><th>매수가(원)</th><th>수량(주)</th><th>매수금액(원)<br><small>(수수료 미포함)</small></th><th>수수료(원)</th><th>총매수금액(원)<br><small>(수수료 포함)</small></th><th>매수후<br>누적평단가(원)</th><th>매수후<br>누적수량(주)</th><th>매수후<br>누적총원금(원)</th></tr></thead><tbody>`;
+    let cumulativeAmount = 0; let cumulativeInvestedCost = 0;
+    appState.purchases.forEach((p, index) => {
+        const purchaseName = index === 0 ? `최초` : `추가 ${index}`;
+        const purchaseCostNoFee = p.price * p.amount;
+        const buyFeeAmount = purchaseCostNoFee * appState.fees.buyRate;
+        const tempCumulativeAmount = cumulativeAmount + p.amount;
+        const tempCumulativeInvestedCost = cumulativeInvestedCost + p.costWithFee;
+        const currentPurchaseCumulativeAvgPrice = tempCumulativeAmount > 0 ? tempCumulativeInvestedCost / tempCumulativeAmount : 0;
+        tableHTML += `<tr>
+        <td>${purchaseName}</td><td>${p.price.toLocaleString()}</td><td>${p.amount.toLocaleString()}</td>
+        <td>${purchaseCostNoFee.toLocaleString('ko-KR', {minimumFractionDigits: 0, maximumFractionDigits: 0})}</td>
+        <td>${buyFeeAmount.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+        <td>${p.costWithFee.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+        <td>${currentPurchaseCumulativeAvgPrice.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+        <td>${tempCumulativeAmount.toLocaleString()}</td>
+        <td>${tempCumulativeInvestedCost.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>`;     
+        cumulativeAmount = tempCumulativeAmount; cumulativeInvestedCost = tempCumulativeInvestedCost;
+    });
+    tableHTML += `</tbody></table>`; dom.purchaseHistoryTableContainer.innerHTML = tableHTML;
 }
-function toggleInitialPurchaseInputs(disabled) { 
-    if(!dom.initPriceInput || !dom.initAmountInput || !dom.setInitialPurchaseBtn || !dom.initialPurchaseSection) return; 
-    dom.initPriceInput.disabled = disabled; dom.initAmountInput.disabled = disabled; 
-    if(dom.setInitialPurchaseBtn) dom.setInitialPurchaseBtn.disabled = disabled; 
-    if(dom.initialPurchaseSection) dom.initialPurchaseSection.style.opacity = disabled ? '0.7' : '1'; 
+function toggleInitialPurchaseInputs(disabled) { 
+    if(!dom.initPriceInput || !dom.initAmountInput || !dom.setInitialPurchaseBtn || !dom.initialPurchaseSection) return; 
+    dom.initPriceInput.disabled = disabled; dom.initAmountInput.disabled = disabled; 
+    if(dom.setInitialPurchaseBtn) dom.setInitialPurchaseBtn.disabled = disabled; 
+    if(dom.initialPurchaseSection) dom.initialPurchaseSection.style.opacity = disabled ? '0.7' : '1'; 
 }
 function setInitialPurchase() {
-  if(!dom.initPriceInput || !dom.initAmountInput) return;
-  const price = parseFloat(dom.initPriceInput.value); const amount = parseInt(dom.initAmountInput.value);
-  if (isNaN(price) || price <= 0 || isNaN(amount) || amount <= 0) { showNotification('최초 매수가와 수량은 0보다 큰 값을 입력해야 합니다.', 'error'); return; }
-  appState.purchases = [{ price, amount, id: `initial-${Date.now()}` }];
-  recalculateAndUpdateUI(); toggleInitialPurchaseInputs(true);
-  showNotification(`최초 매수 입력 완료: ${price.toLocaleString()}원, ${amount.toLocaleString()}주`, 'success');
+  if(!dom.initPriceInput || !dom.initAmountInput) return;
+  const price = parseFloat(dom.initPriceInput.value); const amount = parseInt(dom.initAmountInput.value);
+  if (isNaN(price) || price <= 0 || isNaN(amount) || amount <= 0) { showNotification('최초 매수가와 수량은 0보다 큰 값을 입력해야 합니다.', 'error'); return; }
+  appState.purchases = [{ price, amount, id: `initial-${Date.now()}` }];
+  recalculateAndUpdateUI(); toggleInitialPurchaseInputs(true);
+  showNotification(`최초 매수 입력 완료: ${price.toLocaleString()}원, ${amount.toLocaleString()}주`, 'success');
 }
 function clearInitialPurchase() {
-  if(!dom.initPriceInput || !dom.initAmountInput) return;
-  dom.initPriceInput.value = ''; dom.initAmountInput.value = '';
-  if (appState.purchases.length === 1 && dom.additionalInputsContainer && dom.additionalInputsContainer.children.length === 0 && appState.purchases[0].id.startsWith('initial-')) { appState.purchases = []; }
-  else if (appState.purchases.length > 0 && dom.additionalInputsContainer && dom.additionalInputsContainer.children.length > 0) { showNotification('최초 매수를 수정/삭제하려면 "전체 초기화"를 이용하거나, 추가 매수를 먼저 모두 제거해주세요.', 'info'); return; }
-  else { appState.purchases = []; }
-  recalculateAndUpdateUI(); toggleInitialPurchaseInputs(false); showNotification('최초 매수 정보가 초기화되었습니다.', 'info');
+  if(!dom.initPriceInput || !dom.initAmountInput) return;
+  dom.initPriceInput.value = ''; dom.initAmountInput.value = '';
+  if (appState.purchases.length === 1 && dom.additionalInputsContainer && dom.additionalInputsContainer.children.length === 0 && appState.purchases[0].id.startsWith('initial-')) { appState.purchases = []; }
+  else if (appState.purchases.length > 0 && dom.additionalInputsContainer && dom.additionalInputsContainer.children.length > 0) { showNotification('최초 매수를 수정/삭제하려면 "전체 초기화"를 이용하거나, 추가 매수를 먼저 모두 제거해주세요.', 'info'); return; }
+  else { appState.purchases = []; }
+  recalculateAndUpdateUI(); toggleInitialPurchaseInputs(false); showNotification('최초 매수 정보가 초기화되었습니다.', 'info');
 }
 function addBuyBlock() {
-  if (appState.purchases.length === 0) { 
-    showNotification('최초 매수를 먼저 입력해주세요.', 'error'); 
-    return; 
-  }
-  const block = document.createElement('div'); 
-  block.className = 'buy-block';
-  const blockId = `buyBlock-${Date.now()}`;
-  
-  // ★★★ blockId 변수가 올바르게 ${blockId} 형태로 사용되었는지 확인 ★★★
-  block.innerHTML = `<div class="input-group"><label for="addPrice-${blockId}">추가 매수가 (원)</label><input type="number" id="addPrice-${blockId}" min="0"></div><div class="input-group"><label for="addAmount-${blockId}">추가 매수량 (주)</label><input type="number" id="addAmount-${blockId}" min="1"></div><button onclick="applyBuy(this, '${blockId}')">✔ 이 매수 반영</button><button class="secondary" onclick="removeBuyBlock(this, '${blockId}')">❌ 이 매수 삭제</button>`;
-  
-  if(dom.additionalInputsContainer) dom.additionalInputsContainer.appendChild(block); 
-  block.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (appState.purchases.length === 0) { 
+    showNotification('최초 매수를 먼저 입력해주세요.', 'error'); 
+    return; 
+  }
+  const block = document.createElement('div'); 
+  block.className = 'buy-block';
+  const blockId = `buyBlock-${Date.now()}`;
+  
+  // ★★★ blockId 변수가 올바르게 ${blockId} 형태로 사용되었는지 확인 ★★★
+  block.innerHTML = `<div class="input-group"><label for="addPrice-${blockId}">추가 매수가 (원)</label><input type="number" id="addPrice-${blockId}" min="0"></div><div class="input-group"><label for="addAmount-${blockId}">추가 매수량 (주)</label><input type="number" id="addAmount-${blockId}" min="1"></div><button onclick="applyBuy(this, '${blockId}')">✔ 이 매수 반영</button><button class="secondary" onclick="removeBuyBlock(this, '${blockId}')">❌ 이 매수 삭제</button>`;
+  
+  if(dom.additionalInputsContainer) dom.additionalInputsContainer.appendChild(block); 
+  block.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 function applyBuy(button, blockId) {
-  const block = button.closest('.buy-block');
-  const priceInput = block.querySelector(`#addPrice-${blockId}`); const amountInput = block.querySelector(`#addAmount-${blockId}`);
-  const price = parseFloat(priceInput.value); const amount = parseInt(amountInput.value);
-  if (isNaN(price) || price <= 0 || isNaN(amount) || amount <= 0) { showNotification('추가 매수가와 수량은 0보다 큰 값을 입력해야 합니다.', 'error'); return; }
-  if (button.disabled) { showNotification('이미 반영된 매수입니다.', 'info'); return; }
-  appState.purchases.push({ price, amount, id: blockId }); recalculateAndUpdateUI();
-  priceInput.disabled = true; amountInput.disabled = true; button.textContent = '✅ 반영됨'; button.disabled = true;
-  const removeButton = block.querySelector('button.secondary'); if(removeButton) removeButton.textContent = '❌ 반영된 항목 삭제';
-  showNotification(`추가 매수 반영: ${price.toLocaleString()}원, ${amount.toLocaleString()}주`, 'success');
+  const block = button.closest('.buy-block');
+  const priceInput = block.querySelector(`#addPrice-${blockId}`); const amountInput = block.querySelector(`#addAmount-${blockId}`);
+  const price = parseFloat(priceInput.value); const amount = parseInt(amountInput.value);
+  if (isNaN(price) || price <= 0 || isNaN(amount) || amount <= 0) { showNotification('추가 매수가와 수량은 0보다 큰 값을 입력해야 합니다.', 'error'); return; }
+  if (button.disabled) { showNotification('이미 반영된 매수입니다.', 'info'); return; }
+  appState.purchases.push({ price, amount, id: blockId }); recalculateAndUpdateUI();
+  priceInput.disabled = true; amountInput.disabled = true; button.textContent = '✅ 반영됨'; button.disabled = true;
+  const removeButton = block.querySelector('button.secondary'); if(removeButton) removeButton.textContent = '❌ 반영된 항목 삭제';
+  showNotification(`추가 매수 반영: ${price.toLocaleString()}원, ${amount.toLocaleString()}주`, 'success');
 }
 function removeBuyBlock(button, blockId) {
-    const blockToRemove = button.closest('.buy-block');
-    const applyButton = blockToRemove.querySelector('button[onclick^="applyBuy"]');
-    const isReflected = applyButton ? applyButton.disabled : false;
-    if (isReflected) {
-        const purchaseIndex = appState.purchases.findIndex(p => p.id === blockId);
-        if (purchaseIndex > -1) {
-            if (appState.purchases[purchaseIndex].id.startsWith('initial-')) { showNotification('최초 매수는 이 버튼으로 삭제할 수 없습니다. "최초 매수 초기화"를 사용하세요.', 'error'); return; }
-            appState.purchases.splice(purchaseIndex, 1);
-            if (appState.purchases.length === 0) { toggleInitialPurchaseInputs(false); }
-            recalculateAndUpdateUI(); blockToRemove.remove();
-            showNotification('반영된 매수 항목이 삭제되고 재계산되었습니다.', 'success');
-        } else { showNotification('삭제할 항목 ID를 찾지 못했습니다. DOM에서만 제거합니다.', 'error'); blockToRemove.remove(); }
-    } else { blockToRemove.remove(); showNotification('추가 매수 항목(미반영)이 삭제되었습니다.', 'info'); }
+    const blockToRemove = button.closest('.buy-block');
+    const applyButton = blockToRemove.querySelector('button[onclick^="applyBuy"]');
+    const isReflected = applyButton ? applyButton.disabled : false;
+    if (isReflected) {
+        const purchaseIndex = appState.purchases.findIndex(p => p.id === blockId);
+        if (purchaseIndex > -1) {
+            if (appState.purchases[purchaseIndex].id.startsWith('initial-')) { showNotification('최초 매수는 이 버튼으로 삭제할 수 없습니다. "최초 매수 초기화"를 사용하세요.', 'error'); return; }
+            appState.purchases.splice(purchaseIndex, 1);
+            if (appState.purchases.length === 0) { toggleInitialPurchaseInputs(false); }
+            recalculateAndUpdateUI(); blockToRemove.remove();
+            showNotification('반영된 매수 항목이 삭제되고 재계산되었습니다.', 'success');
+        } else { showNotification('삭제할 항목 ID를 찾지 못했습니다. DOM에서만 제거합니다.', 'error'); blockToRemove.remove(); }
+    } else { blockToRemove.remove(); showNotification('추가 매수 항목(미반영)이 삭제되었습니다.', 'info'); }
 }
 function clearAdditionalBuys() {
-  if (!dom.additionalInputsContainer) return;
-  if (appState.purchases.length === 0) { showNotification('초기화할 매수 내역이 없습니다.', 'info'); return; }
-  if (appState.purchases.length === 1 && appState.purchases[0].id.startsWith('initial-') && dom.additionalInputsContainer.children.length === 0) { showNotification('초기화할 추가 매수 내역이 없습니다.', 'info'); return; }
-  const initialPurchase = appState.purchases.find(p => p.id && p.id.startsWith('initial-'));
-  appState.purchases = initialPurchase ? [initialPurchase] : [];
-  dom.additionalInputsContainer.innerHTML = ''; recalculateAndUpdateUI();
-  showNotification('추가 매수 정보가 모두 초기화되었습니다.', 'success');
+  if (!dom.additionalInputsContainer) return;
+  if (appState.purchases.length === 0) { showNotification('초기화할 매수 내역이 없습니다.', 'info'); return; }
+  if (appState.purchases.length === 1 && appState.purchases[0].id.startsWith('initial-') && dom.additionalInputsContainer.children.length === 0) { showNotification('초기화할 추가 매수 내역이 없습니다.', 'info'); return; }
+  const initialPurchase = appState.purchases.find(p => p.id && p.id.startsWith('initial-'));
+  appState.purchases = initialPurchase ? [initialPurchase] : [];
+  dom.additionalInputsContainer.innerHTML = ''; recalculateAndUpdateUI();
+  showNotification('추가 매수 정보가 모두 초기화되었습니다.', 'success');
 }
 function updateAggregates() {
-  if (appState.purchases.length === 0) { appState.totalAmount = 0; appState.totalInvestedCost = 0; appState.avgBuyPrice = 0; return; }
-  let totalAmount = 0, totalCost = 0;
-  appState.purchases.forEach(p => {
-    const costWithFee = p.price * p.amount * (1 + appState.fees.buyRate); p.costWithFee = costWithFee;
-    totalAmount += p.amount; totalCost += costWithFee;
-  });
-  appState.totalAmount = totalAmount; appState.totalInvestedCost = totalCost;
-  appState.avgBuyPrice = totalAmount > 0 ? totalCost / totalAmount : 0;
+  if (appState.purchases.length === 0) { appState.totalAmount = 0; appState.totalInvestedCost = 0; appState.avgBuyPrice = 0; return; }
+  let totalAmount = 0, totalCost = 0;
+  appState.purchases.forEach(p => {
+    const costWithFee = p.price * p.amount * (1 + appState.fees.buyRate); p.costWithFee = costWithFee;
+    totalAmount += p.amount; totalCost += costWithFee;
+  });
+  appState.totalAmount = totalAmount; appState.totalInvestedCost = totalCost;
+  appState.avgBuyPrice = totalAmount > 0 ? totalCost / totalAmount : 0;
 }
 function calculateProfit() {
-  if (!dom.profitResultTableDiv || !dom.breakEvenDiv || !dom.currentPriceInput) return;
-  if (appState.purchases.length === 0) { dom.profitResultTableDiv.innerHTML = ''; dom.breakEvenDiv.innerHTML = ''; return; }
-  const currentPriceStr = dom.currentPriceInput.value; let currentPrice;
-  if (currentPriceStr === '') {
-      if (appState.currentPrice > 0) { currentPrice = appState.currentPrice; dom.currentPriceInput.value = currentPrice; }
-      else if (appState.purchases.length > 0) { currentPrice = appState.purchases[appState.purchases.length - 1].price; dom.currentPriceInput.value = currentPrice; showNotification(`현재가가 자동 입력: ${currentPrice.toLocaleString()}원`, 'info');}
-      else { return; }
-  } else { currentPrice = parseFloat(currentPriceStr); }
-  if (isNaN(currentPrice) || currentPrice < 0) { showNotification('올바른 현재 주가를 입력하세요.', 'error'); return; }
-  appState.currentPrice = currentPrice;
-  const grossMarketValue = currentPrice * appState.totalAmount;
-  const netMarketValue = grossMarketValue * (1 - appState.fees.sellRate - appState.fees.taxRate);
-  const profitOrLoss = netMarketValue - appState.totalInvestedCost;
-  const roi = appState.totalInvestedCost > 0 ? (profitOrLoss / appState.totalInvestedCost) * 100 : 0;
-  const colorClass = profitOrLoss >= 0 ? 'positive' : 'negative';
-  dom.profitResultTableDiv.innerHTML = `<table><tr><th>구분</th><th>금액(원) / 비율(%)</th></tr><tr><td>총 투자 원금</td><td><span class="math-inline">\{appState\.totalInvestedCost\.toLocaleString\('ko\-KR', \{minimumFractionDigits\:2,maximumFractionDigits\:2\}\)\}</td\></tr\><tr\><td\>현재 평가액 \(세전\)</td\><td\></span>{grossMarketValue.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})}</td></tr><tr><td>예상 순 평가액 (세후)</td><td><span class="math-inline">\{netMarketValue\.toLocaleString\('ko\-KR',\{minimumFractionDigits\:2,maximumFractionDigits\:2\}\)\}</td\></tr\><tr\><td class\="</span>{colorClass}">예상 순손익</td><td class="<span class="math-inline">\{colorClass\}"\></span>{profitOrLoss.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})}</td></tr><tr><td class="<span class="math-inline">\{colorClass\}"\>예상 수익률</td\><td class\="</span>{colorClass}">${roi.toFixed(2)}%</td></tr></table>`;
-  let breakEvenPrice = 0;
-  if (appState.totalAmount > 0 && (1-appState.fees.sellRate-appState.fees.taxRate)>0) { breakEvenPrice = appState.totalInvestedCost / (appState.totalAmount * (1-appState.fees.sellRate-appState.fees.taxRate));}
-  else if (appState.totalAmount > 0) { breakEvenPrice = Infinity; }
-  dom.breakEvenDiv.innerHTML = `🎯 <strong>손익분기점 주가: ${breakEvenPrice === Infinity ? "도달 불가능" : breakEvenPrice.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})} 원</strong>`;
+  if (!dom.profitResultTableDiv || !dom.breakEvenDiv || !dom.currentPriceInput) return;
+  if (appState.purchases.length === 0) { dom.profitResultTableDiv.innerHTML = ''; dom.breakEvenDiv.innerHTML = ''; return; }
+  const currentPriceStr = dom.currentPriceInput.value; let currentPrice;
+  if (currentPriceStr === '') {
+      if (appState.currentPrice > 0) { currentPrice = appState.currentPrice; dom.currentPriceInput.value = currentPrice; }
+      else if (appState.purchases.length > 0) { currentPrice = appState.purchases[appState.purchases.length - 1].price; dom.currentPriceInput.value = currentPrice; showNotification(`현재가가 자동 입력: ${currentPrice.toLocaleString()}원`, 'info');}
+      else { return; }
+  } else { currentPrice = parseFloat(currentPriceStr); }
+  if (isNaN(currentPrice) || currentPrice < 0) { showNotification('올바른 현재 주가를 입력하세요.', 'error'); return; }
+  appState.currentPrice = currentPrice;
+  const grossMarketValue = currentPrice * appState.totalAmount;
+  const netMarketValue = grossMarketValue * (1 - appState.fees.sellRate - appState.fees.taxRate);
+  const profitOrLoss = netMarketValue - appState.totalInvestedCost;
+  const roi = appState.totalInvestedCost > 0 ? (profitOrLoss / appState.totalInvestedCost) * 100 : 0;
+  const colorClass = profitOrLoss >= 0 ? 'positive' : 'negative';
+  dom.profitResultTableDiv.innerHTML = `<table><tr><th>구분</th><th>금액(원) / 비율(%)</th></tr><tr><td>총 투자 원금</td><td>${appState.totalInvestedCost.toLocaleString('ko-KR', {minimumFractionDigits:2,maximumFractionDigits:2})}</td></tr><tr><td>현재 평가액 (세전)</td><td>${grossMarketValue.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})}</td></tr><tr><td>예상 순 평가액 (세후)</td><td>${netMarketValue.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})}</td></tr><tr><td class="${colorClass}">예상 순손익</td><td class="${colorClass}">${profitOrLoss.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})}</td></tr><tr><td class="${colorClass}">예상 수익률</td><td class="${colorClass}">${roi.toFixed(2)}%</td></tr></table>`;
+  let breakEvenPrice = 0;
+  if (appState.totalAmount > 0 && (1-appState.fees.sellRate-appState.fees.taxRate)>0) { breakEvenPrice = appState.totalInvestedCost / (appState.totalAmount * (1-appState.fees.sellRate-appState.fees.taxRate));}
+  else if (appState.totalAmount > 0) { breakEvenPrice = Infinity; }
+  dom.breakEvenDiv.innerHTML = `🎯 <strong>손익분기점 주가: ${breakEvenPrice === Infinity ? "도달 불가능" : breakEvenPrice.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})} 원</strong>`;
 }
 function clearProfitCalculation() {
-  if(!dom.currentPriceInput || !dom.profitResultTableDiv || !dom.breakEvenDiv) return;
-  dom.currentPriceInput.value = ''; dom.profitResultTableDiv.innerHTML = ''; dom.breakEvenDiv.innerHTML = '';
-  appState.currentPrice = 0; if (appState.purchases.length > 0) updateCharts();
-  showNotification('손익 계산 결과가 초기화되었습니다.', 'info');
+  if(!dom.currentPriceInput || !dom.profitResultTableDiv || !dom.breakEvenDiv) return;
+  dom.currentPriceInput.value = ''; dom.profitResultTableDiv.innerHTML = ''; dom.breakEvenDiv.innerHTML = '';
+  appState.currentPrice = 0; if (appState.purchases.length > 0) updateCharts();
+  showNotification('손익 계산 결과가 초기화되었습니다.', 'info');
 }
 function calculateTargetSellPrice() {
-  if(!dom.targetROIInput || !dom.targetPriceResultDiv || !dom.targetPriceTableDiv) return;
-  const targetROIStr = dom.targetROIInput.value; let targetROIValue;
-  if (targetROIStr === '') { if (appState.targetROI === 0 && dom.targetPriceResultDiv.innerText === '') return; targetROIValue = appState.targetROI; }
-  else { targetROIValue = parseFloat(targetROIStr); }
-  if (isNaN(targetROIValue)) { showNotification('목표 수익률을 숫자로 입력하세요.', 'error'); dom.targetPriceResultDiv.innerHTML = ''; dom.targetPriceTableDiv.innerHTML = ''; return; }
-  if (appState.purchases.length === 0) { return; }
-  if (targetROIValue < -100) { showNotification('목표 수익률은 -100% 이상으로 입력해주세요.', 'error'); return; }
-  appState.targetROI = targetROIValue;
-  const targetNetProfit = appState.totalInvestedCost * (targetROIValue / 100);
-  const targetNetMarketValue = appState.totalInvestedCost + targetNetProfit;
-  let targetSellPrice = 0;
-  if (appState.totalAmount > 0 && (1-appState.fees.sellRate-appState.fees.taxRate)>0) { targetSellPrice = targetNetMarketValue / (appState.totalAmount * (1-appState.fees.sellRate-appState.fees.taxRate));}
-  else if (appState.totalAmount > 0) { targetSellPrice = Infinity; }
-  const colorClass = targetNetProfit >= 0 ? 'positive' : 'negative';
-  dom.targetPriceResultDiv.innerText = `📌 ${targetROIValue}% 순수익을 위한 매도 목표가는 ${targetSellPrice === Infinity ? "도달 불가능" : targetSellPrice.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})} 원입니다.`;
-  dom.targetPriceTableDiv.innerHTML = `<table><tr><th>항목</th><th>금액(원) / 비율(%)</th></tr><tr><td>평균 매수 단가</td><td><span class="math-inline">\{appState\.avgBuyPrice\.toLocaleString\('ko\-KR',\{minimumFractionDigits\:2,maximumFractionDigits\:2\}\)\}</td\></tr\><tr\><td class\="</span>{colorClass}">목표 매도가 (<span class="math-inline">\{targetROIValue\}%\)</td\><td class\="</span>{colorClass}"><span class="math-inline">\{targetSellPrice \=\=\= Infinity ? "도달 불가능" \: targetSellPrice\.toLocaleString\('ko\-KR',\{minimumFractionDigits\:2,maximumFractionDigits\:2\}\)\}</td\></tr\><tr\><td\>총 투자 원금</td\><td\></span>{appState.totalInvestedCost.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})}</td></tr><tr><td class="<span class="math-inline">\{colorClass\}"\>예상 순수익</td\><td class\="</span>{colorClass}"><span class="math-inline">\{targetNetProfit\.toLocaleString\('ko\-KR',\{minimumFractionDigits\:2,maximumFractionDigits\:2\}\)\}</td\></tr\><tr\><td\>예상 총 순자산 \(매도 후\)</td\><td\></span>{targetNetMarketValue.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})}</td></tr></table>`;
+  if(!dom.targetROIInput || !dom.targetPriceResultDiv || !dom.targetPriceTableDiv) return;
+  const targetROIStr = dom.targetROIInput.value; let targetROIValue;
+  if (targetROIStr === '') { if (appState.targetROI === 0 && dom.targetPriceResultDiv.innerText === '') return; targetROIValue = appState.targetROI; }
+  else { targetROIValue = parseFloat(targetROIStr); }
+  if (isNaN(targetROIValue)) { showNotification('목표 수익률을 숫자로 입력하세요.', 'error'); dom.targetPriceResultDiv.innerHTML = ''; dom.targetPriceTableDiv.innerHTML = ''; return; }
+  if (appState.purchases.length === 0) { return; }
+  if (targetROIValue < -100) { showNotification('목표 수익률은 -100% 이상으로 입력해주세요.', 'error'); return; }
+  appState.targetROI = targetROIValue;
+  const targetNetProfit = appState.totalInvestedCost * (targetROIValue / 100);
+  const targetNetMarketValue = appState.totalInvestedCost + targetNetProfit;
+  let targetSellPrice = 0;
+  if (appState.totalAmount > 0 && (1-appState.fees.sellRate-appState.fees.taxRate)>0) { targetSellPrice = targetNetMarketValue / (appState.totalAmount * (1-appState.fees.sellRate-appState.fees.taxRate));}
+  else if (appState.totalAmount > 0) { targetSellPrice = Infinity; }
+  const colorClass = targetNetProfit >= 0 ? 'positive' : 'negative';
+  dom.targetPriceResultDiv.innerText = `📌 ${targetROIValue}% 순수익을 위한 매도 목표가는 ${targetSellPrice === Infinity ? "도달 불가능" : targetSellPrice.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})} 원입니다.`;
+  dom.targetPriceTableDiv.innerHTML = `<table><tr><th>항목</th><th>금액(원) / 비율(%)</th></tr><tr><td>평균 매수 단가</td><td>${appState.avgBuyPrice.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})}</td></tr><tr><td class="${colorClass}">목표 매도가 (${targetROIValue}%)</td><td class="${colorClass}">${targetSellPrice === Infinity ? "도달 불가능" : targetSellPrice.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})}</td></tr><tr><td>총 투자 원금</td><td>${appState.totalInvestedCost.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})}</td></tr><tr><td class="${colorClass}">예상 순수익</td><td class="${colorClass}">${targetNetProfit.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})}</td></tr><tr><td>예상 총 순자산 (매도 후)</td><td>${targetNetMarketValue.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})}</td></tr></table>`;
 }
 function clearTargetPriceCalculation() {
-    if(!dom.targetROIInput || !dom.targetPriceResultDiv || !dom.targetPriceTableDiv) return;
-    dom.targetROIInput.value = ''; dom.targetPriceResultDiv.innerHTML = ''; dom.targetPriceTableDiv.innerHTML = '';
-    appState.targetROI = 0; if (appState.purchases.length > 0) updateCharts();
-    showNotification('매도 목표가 계산 결과가 초기화되었습니다.', 'info');
+    if(!dom.targetROIInput || !dom.targetPriceResultDiv || !dom.targetPriceTableDiv) return;
+    dom.targetROIInput.value = ''; dom.targetPriceResultDiv.innerHTML = ''; dom.targetPriceTableDiv.innerHTML = '';
+    appState.targetROI = 0; if (appState.purchases.length > 0) updateCharts();
+    showNotification('매도 목표가 계산 결과가 초기화되었습니다.', 'info');
 }
 function initializeCharts() {
-    const getChartTextColors = () => ({ titleColor: isDarkChartElement()?'#e0e0e0':'#333', legendColor: isDarkChartElement()?'#e0e0e0':'#333', tickColor: isDarkChartElement()?'#e0e0e0':'#666', gridColor: isDarkChartElement()?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)' });
-    const commonChartOptions = (type) => {
-        const colors = getChartTextColors();
-        let options = { responsive: true, maintainAspectRatio: false,
-            plugins: {
-                legend: { labels: { color: colors.legendColor } },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            let datasetLabel = context.dataset.label || ''; 
-                            let currentLabel = context.label || ''; 
-                            let valueToShow = context.parsed.y; 
-                            let prefix = datasetLabel ? datasetLabel + ': ' : (currentLabel ? currentLabel + ': ' : '');
-                            if (type === 'pie' || type === 'doughnut') {
-                                valueToShow = context.raw;
-                                const total = context.chart.getDatasetMeta(0).total;
-                                const percentage = total > 0 ? ((valueToShow / total) * 100).toFixed(2) : 0;
-                                return `${context.label}: <span class="math-inline">\{valueToShow\.toLocaleString\('ko\-KR'\)\} 원 \(</span>{percentage}%)`;
-                            } else if (datasetLabel === '매수 수량') {
-                                if (valueToShow !== null) return `<span class="math-inline">\{prefix\}</span>{valueToShow.toLocaleString()} 주`;
-                            } else { 
-                                if (valueToShow !== null) return `<span class="math-inline">\{prefix\}</span>{valueToShow.toLocaleString('ko-KR', {minimumFractionDigits:0, maximumFractionDigits:2})} 원`;
-                            }
-                            return prefix + 'N/A';
-                        }
-                    }
-                }
-            }
-        };
-        if (type === 'line' || type === 'bar' || type === 'historicalLine') { 
-             options.scales = {
-                y: { beginAtZero: (type === 'bar' || (type === 'historicalLine' && appState.historicalPrices && !appState.historicalPrices.some(p => p.price < 0)) ), ticks: { callback: function(value) { return type === 'bar' ? value.toLocaleString() + ' 주' : value.toLocaleString('ko-KR') + ' 원'; }, color: colors.tickColor }, grid: { color: colors.gridColor }, title: {display: type === 'bar', text: type === 'bar' ? '수량(주)' : '', color: colors.titleColor} },
-                x: { ticks: { font: { size: 10 }, color: colors.tickColor }, grid: { color: colors.gridColor } }
-            };
-            if (type === 'historicalLine') {
-                options.scales.x.type = 'category'; 
-                options.scales.y.beginAtZero = false; 
-            }
-        }
-        return options;
-    };
+    const getChartTextColors = () => ({ titleColor: isDarkChartElement()?'#e0e0e0':'#333', legendColor: isDarkChartElement()?'#e0e0e0':'#333', tickColor: isDarkChartElement()?'#e0e0e0':'#666', gridColor: isDarkChartElement()?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)' });
+    const commonChartOptions = (type) => {
+        const colors = getChartTextColors();
+        let options = { responsive: true, maintainAspectRatio: false,
+            plugins: {
+                legend: { labels: { color: colors.legendColor } },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let datasetLabel = context.dataset.label || ''; 
+                            let currentLabel = context.label || ''; 
+                            let valueToShow = context.parsed.y; 
+                            let prefix = datasetLabel ? datasetLabel + ': ' : (currentLabel ? currentLabel + ': ' : '');
+                            if (type === 'pie' || type === 'doughnut') {
+                                valueToShow = context.raw;
+                                const total = context.chart.getDatasetMeta(0).total;
+                                const percentage = total > 0 ? ((valueToShow / total) * 100).toFixed(2) : 0;
+                                return `${context.label}: ${valueToShow.toLocaleString('ko-KR')} 원 (${percentage}%)`;
+                            } else if (datasetLabel === '매수 수량') {
+                                if (valueToShow !== null) return `${prefix}${valueToShow.toLocaleString()} 주`;
+                            } else { 
+                                if (valueToShow !== null) return `${prefix}${valueToShow.toLocaleString('ko-KR', {minimumFractionDigits:0, maximumFractionDigits:2})} 원`;
+                            }
+                            return prefix + 'N/A';
+                        }
+                    }
+                }
+            }
+        };
+        if (type === 'line' || type === 'bar' || type === 'historicalLine') { 
+             options.scales = {
+                y: { beginAtZero: (type === 'bar' || (type === 'historicalLine' && appState.historicalPrices && !appState.historicalPrices.some(p => p.price < 0)) ), ticks: { callback: function(value) { return type === 'bar' ? value.toLocaleString() + ' 주' : value.toLocaleString('ko-KR') + ' 원'; }, color: colors.tickColor }, grid: { color: colors.gridColor }, title: {display: type === 'bar', text: type === 'bar' ? '수량(주)' : '', color: colors.titleColor} },
+                x: { ticks: { font: { size: 10 }, color: colors.tickColor }, grid: { color: colors.gridColor } }
+            };
+            if (type === 'historicalLine') {
+                options.scales.x.type = 'category'; 
+                options.scales.y.beginAtZero = false; 
+            }
+        }
+        return options;
+    };
 
-    if (dom.avgPriceChartCanvas) { const colors = getChartTextColors(); avgPriceChartInstance = new Chart(dom.avgPriceChartCanvas.getContext('2d'), { type: 'line', data: { labels: [], datasets: [] }, options: { ...commonChartOptions('line'), plugins: { ...commonChartOptions('line').plugins, title: { display: true, text: '📈 평균 매수 단가 및 개별 매수가', color: colors.titleColor } } } }); }
-    if (dom.volumeChartCanvas) { const colors = getChartTextColors(); volumeChartInstance = new Chart(dom.volumeChartCanvas.getContext('2d'), { type: 'bar', data: { labels: [], datasets: [] }, options: { ...commonChartOptions('bar'), plugins: { ...commonChartOptions('bar').plugins, title: { display: true, text: '📊 매수 회차별 수량', color: colors.titleColor }, legend: { display: false } } } }); }
-    if (dom.investmentPieChartCanvas) { const colors = getChartTextColors(); investmentPieChartInstance = new Chart(dom.investmentPieChartCanvas.getContext('2d'), { type: 'pie', data: { labels: [], datasets: [{ label: '매수 금액 비중', data: [], backgroundColor: [], borderColor: [], borderWidth: 1 }] }, options: { ...commonChartOptions('pie'), plugins: { ...commonChartOptions('pie').plugins, title: { display: true, text: '💰 매수 건별 금액 비중 (%)', color: colors.titleColor }, legend: {position: 'top'} } } }); if (dom.investmentPieChartCanvas) dom.investmentPieChartCanvas.style.display = 'none'; }
-    
-    if (dom.priceComparisonChartCanvas) { 
-        const colors = getChartTextColors();
-        historicalPriceChartInstance = new Chart(dom.priceComparisonChartCanvas.getContext('2d'), { 
-            type: 'line',
-            data: { labels: [], datasets: [ { label: '일별 종가', data: [], borderColor: 'rgba(75, 192, 192, 1)', backgroundColor: 'rgba(75, 192, 192, 0.2)', tension: 0.1, fill: false } ] },
-            options: { 
-                ...commonChartOptions('historicalLine'), 
-                plugins: { 
-                    ...commonChartOptions('historicalLine').plugins, 
-                    title: { display: true, text: '📈 기간별 종가 및 나의 평균단가', color: colors.titleColor }, 
-                    legend: { display: true, position: 'top' },
-                    annotation: { annotations: { avgBuyPriceLine: { type: 'line', display: false, yMin: 0, yMax: 0, borderColor: 'orange', borderWidth: 2, borderDash: [6, 6], label: { enabled: true, content: '나의 평단가: 0원', position: 'end', backgroundColor: 'rgba(255,159,64,0.7)', color: 'white', font: { size: 10 }, padding: 3, yAdjust: -10 } } } }
-                } 
-            } 
-        }); 
-        if (dom.priceComparisonChartCanvas) dom.priceComparisonChartCanvas.style.display = 'none';
-    }
-    updateDarkModeUI(isDarkChartElement());
+    if (dom.avgPriceChartCanvas) { const colors = getChartTextColors(); avgPriceChartInstance = new Chart(dom.avgPriceChartCanvas.getContext('2d'), { type: 'line', data: { labels: [], datasets: [] }, options: { ...commonChartOptions('line'), plugins: { ...commonChartOptions('line').plugins, title: { display: true, text: '📈 평균 매수 단가 및 개별 매수가', color: colors.titleColor } } } }); }
+    if (dom.volumeChartCanvas) { const colors = getChartTextColors(); volumeChartInstance = new Chart(dom.volumeChartCanvas.getContext('2d'), { type: 'bar', data: { labels: [], datasets: [] }, options: { ...commonChartOptions('bar'), plugins: { ...commonChartOptions('bar').plugins, title: { display: true, text: '📊 매수 회차별 수량', color: colors.titleColor }, legend: { display: false } } } }); }
+    if (dom.investmentPieChartCanvas) { const colors = getChartTextColors(); investmentPieChartInstance = new Chart(dom.investmentPieChartCanvas.getContext('2d'), { type: 'pie', data: { labels: [], datasets: [{ label: '매수 금액 비중', data: [], backgroundColor: [], borderColor: [], borderWidth: 1 }] }, options: { ...commonChartOptions('pie'), plugins: { ...commonChartOptions('pie').plugins, title: { display: true, text: '💰 매수 건별 금액 비중 (%)', color: colors.titleColor }, legend: {position: 'top'} } } }); if (dom.investmentPieChartCanvas) dom.investmentPieChartCanvas.style.display = 'none'; }
+    
+    if (dom.priceComparisonChartCanvas) { 
+        const colors = getChartTextColors();
+        historicalPriceChartInstance = new Chart(dom.priceComparisonChartCanvas.getContext('2d'), { 
+            type: 'line',
+            data: { labels: [], datasets: [ { label: '일별 종가', data: [], borderColor: 'rgba(75, 192, 192, 1)', backgroundColor: 'rgba(75, 192, 192, 0.2)', tension: 0.1, fill: false } ] },
+            options: { 
+                ...commonChartOptions('historicalLine'), 
+                plugins: { 
+                    ...commonChartOptions('historicalLine').plugins, 
+                    title: { display: true, text: '📈 기간별 종가 및 나의 평균단가', color: colors.titleColor }, 
+                    legend: { display: true, position: 'top' },
+                    annotation: { annotations: { avgBuyPriceLine: { type: 'line', display: false, yMin: 0, yMax: 0, borderColor: 'orange', borderWidth: 2, borderDash: [6, 6], label: { enabled: true, content: '나의 평단가: 0원', position: 'end', backgroundColor: 'rgba(255,159,64,0.7)', color: 'white', font: { size: 10 }, padding: 3, yAdjust: -10 } } } }
+                } 
+            } 
+        }); 
+        if (dom.priceComparisonChartCanvas) dom.priceComparisonChartCanvas.style.display = 'none';
+    }
+    updateDarkModeUI(isDarkChartElement());
 }
 
 function updateCharts() {
-    if (!avgPriceChartInstance && !volumeChartInstance && !investmentPieChartInstance && !historicalPriceChartInstance) return; 
-    const chartLabels = appState.purchases.map((p, i) => i === 0 ? `최초(${p.amount}주)` : `추가<span class="math-inline">\{i\}\(</span>{p.amount}주)`);
+    if (!avgPriceChartInstance && !volumeChartInstance && !investmentPieChartInstance && !historicalPriceChartInstance) return; 
+    const chartLabels = appState.purchases.map((p, i) => i === 0 ? `최초(${p.amount}주)` : `추가${i}(${p.amount}주)`);
 
-    if (avgPriceChartInstance) {
-        const avgPricesData = []; let cumulativeCost = 0, cumulativeAmount = 0;
-        appState.purchases.forEach(p => { cumulativeCost += p.costWithFee; cumulativeAmount += p.amount; avgPricesData.push(cumulativeAmount > 0 ? cumulativeCost / cumulativeAmount : 0); });
-        const individualPurchaseData = appState.purchases.map((p, index) => ({ x: index, y: p.price }));
-        avgPriceChartInstance.data.labels = chartLabels;
-        avgPriceChartInstance.data.datasets = [
-            { label: '평균 매수 단가', data: avgPricesData, type: 'line', borderColor: 'rgba(255,99,132,1)', backgroundColor: 'rgba(255,99,132,0.2)', fill: false, tension: 0.1, order: 1 },
-            { label: '개별 매수가', data: individualPurchaseData, type: 'scatter', backgroundColor: 'rgba(75,192,192,0.7)', borderColor: 'rgba(75,192,192,1)', radius: 5, order: 0 }
-        ];
-        avgPriceChartInstance.options.plugins.customLines = { afterDraw: (chart) => {
-            const ctx = chart.ctx; const yScale = chart.scales.y; const chartArea = chart.chartArea; if (!yScale || !chartArea) return;
-            if (appState.currentPrice > 0 && appState.purchases.length > 0) { const yCurrent = yScale.getPixelForValue(appState.currentPrice); if (yCurrent >= chartArea.top && yCurrent <= chartArea.bottom) { ctx.save(); ctx.strokeStyle = 'green'; ctx.setLineDash([5, 5]); ctx.beginPath(); ctx.moveTo(chartArea.left, yCurrent); ctx.lineTo(chartArea.right, yCurrent); ctx.stroke(); ctx.fillStyle = isDarkChartElement() ? '#90EE90' : 'green'; ctx.textAlign = 'right'; ctx.fillText(`현재가: ${appState.currentPrice.toLocaleString()}원`, chartArea.right - 5, yCurrent - 5); ctx.restore(); } }
-            if (appState.targetROI !== 0 && dom.targetPriceResultDiv && dom.targetPriceResultDiv.innerText !== '' && appState.purchases.length > 0) { const targetNetProfit = appState.totalInvestedCost*(appState.targetROI/100); const targetNetMarketValue = appState.totalInvestedCost + targetNetProfit; let targetSellPriceVal = 0; if (appState.totalAmount>0 && (1-appState.fees.sellRate-appState.fees.taxRate)>0) { targetSellPriceVal = targetNetMarketValue/(appState.totalAmount*(1-appState.fees.sellRate-appState.fees.taxRate)); } else if (appState.totalAmount > 0) { targetSellPriceVal = Infinity; } if (targetSellPriceVal > 0 && targetSellPriceVal !== Infinity) { const yTarget = yScale.getPixelForValue(targetSellPriceVal); if (yTarget >= chartArea.top && yTarget <= chartArea.bottom) { ctx.save(); ctx.strokeStyle = 'orange'; ctx.setLineDash([5, 5]); ctx.beginPath(); ctx.moveTo(chartArea.left, yTarget); ctx.lineTo(chartArea.right, yTarget); ctx.stroke(); ctx.fillStyle = isDarkChartElement() ? '#FFD580' : 'orange'; ctx.textAlign = 'left'; ctx.fillText(`목표가(${appState.targetROI}%): ${targetSellPriceVal.toLocaleString()}원`, chartArea.left + 5, yTarget - 5); ctx.restore(); } } }
-        }};
-        avgPriceChartInstance.update('none');
-    }
-    if (volumeChartInstance) {
-        const amountsData = appState.purchases.map(p => p.amount); volumeChartInstance.data.labels = chartLabels;
-        volumeChartInstance.data.datasets = [{ label: '매수 수량', data: amountsData, backgroundColor: 'rgba(54,162,235,0.6)', borderColor: 'rgba(54,162,235,1)', borderWidth: 1 }];
-        volumeChartInstance.update('none');
-    }
-    if (investmentPieChartInstance) {
-        if (appState.purchases.length > 0) {
-            const pieLabels = appState.purchases.map((p, i) => i === 0 ? `최초 (${p.price.toLocaleString()}원, ${p.amount}주)` : `추가 <span class="math-inline">\{i\} \(</span>{p.price.toLocaleString()}원, ${p.amount}주)`);
-            const pieData = appState.purchases.map(p => p.costWithFee);
-            const baseColors = ['rgba(255,99,132,0.7)','rgba(54,162,235,0.7)','rgba(255,206,86,0.7)','rgba(75,192,192,0.7)','rgba(153,102,255,0.7)','rgba(255,159,64,0.7)','rgba(199,199,199,0.7)','rgba(83,102,83,0.7)','rgba(150,50,90,0.7)','rgba(90,150,50,0.7)'];
-            const backgroundColors = pieLabels.map((_, i) => baseColors[i % baseColors.length]); const borderColors = backgroundColors.map(color => color.replace('0.7', '1'));
-            investmentPieChartInstance.data.labels = pieLabels; investmentPieChartInstance.data.datasets[0].data = pieData;
-            investmentPieChartInstance.data.datasets[0].backgroundColor = backgroundColors; investmentPieChartInstance.data.datasets[0].borderColor = borderColors;
-            investmentPieChartInstance.update('none'); if (dom.investmentPieChartCanvas) dom.investmentPieChartCanvas.style.display = 'block';
-        } else {
-            investmentPieChartInstance.data.labels = []; investmentPieChartInstance.data.datasets[0].data = [];
-            investmentPieChartInstance.update('none'); if (dom.investmentPieChartCanvas) dom.investmentPieChartCanvas.style.display = 'none';
-        }
-    }
-    if (historicalPriceChartInstance) {
-        if (appState.historicalPrices && appState.historicalPrices.length > 0) {
-            const labels = appState.historicalPrices.map(item => {
-                const year = item.date.substring(2, 4); const month = item.date.substring(4, 6); const day = item.date.substring(6, 8);
-                return `<span class="math-inline">\{year\}/</span>{month}/${day}`;
-            });
-            const data = appState.historicalPrices.map(item => item.price);
-            historicalPriceChartInstance.data.labels = labels;
-            historicalPriceChartInstance.data.datasets[0].data = data;
-            historicalPriceChartInstance.data.datasets[0].label = appState.fetchedStockInfo.name ? `<span class="math-inline">\{appState\.fetchedStockInfo\.name\}\(</span>{appState.fetchedStockInfo.code}) 일별종가` : '일별 종가';
-            
-            if (historicalPriceChartInstance.options.plugins.annotation && historicalPriceChartInstance.options.plugins.annotation.annotations.avgBuyPriceLine) {
-                const avgPriceAnnotation = historicalPriceChartInstance.options.plugins.annotation.annotations.avgBuyPriceLine;
-                if (appState.purchases.length > 0 && appState.avgBuyPrice > 0) {
-                    avgPriceAnnotation.display = true;
-                    avgPriceAnnotation.yMin = appState.avgBuyPrice;
-                    avgPriceAnnotation.yMax = appState.avgBuyPrice;
-                    avgPriceAnnotation.label.content = `나의 평단가: ${appState.avgBuyPrice.toLocaleString('ko-KR', {minimumFractionDigits:0, maximumFractionDigits:2})}원`;
-                } else { avgPriceAnnotation.display = false; }
-            }
-            historicalPriceChartInstance.update('none');
-            if (dom.priceComparisonChartCanvas) dom.priceComparisonChartCanvas.style.display = 'block';
-        } else {
-            historicalPriceChartInstance.data.labels = [];
-            historicalPriceChartInstance.data.datasets[0].data = [];
-            if (historicalPriceChartInstance.options.plugins.annotation && historicalPriceChartInstance.options.plugins.annotation.annotations.avgBuyPriceLine) {
-                historicalPriceChartInstance.options.plugins.annotation.annotations.avgBuyPriceLine.display = false;
-            }
-            historicalPriceChartInstance.update('none');
-            if (dom.priceComparisonChartCanvas) dom.priceComparisonChartCanvas.style.display = 'none';
-        }
-    }
+    if (avgPriceChartInstance) {
+        const avgPricesData = []; let cumulativeCost = 0, cumulativeAmount = 0;
+        appState.purchases.forEach(p => { cumulativeCost += p.costWithFee; cumulativeAmount += p.amount; avgPricesData.push(cumulativeAmount > 0 ? cumulativeCost / cumulativeAmount : 0); });
+        const individualPurchaseData = appState.purchases.map((p, index) => ({ x: index, y: p.price }));
+        avgPriceChartInstance.data.labels = chartLabels;
+        avgPriceChartInstance.data.datasets = [
+            { label: '평균 매수 단가', data: avgPricesData, type: 'line', borderColor: 'rgba(255,99,132,1)', backgroundColor: 'rgba(255,99,132,0.2)', fill: false, tension: 0.1, order: 1 },
+            { label: '개별 매수가', data: individualPurchaseData, type: 'scatter', backgroundColor: 'rgba(75,192,192,0.7)', borderColor: 'rgba(75,192,192,1)', radius: 5, order: 0 }
+        ];
+        avgPriceChartInstance.options.plugins.customLines = { afterDraw: (chart) => {
+            const ctx = chart.ctx; const yScale = chart.scales.y; const chartArea = chart.chartArea; if (!yScale || !chartArea) return;
+            if (appState.currentPrice > 0 && appState.purchases.length > 0) { const yCurrent = yScale.getPixelForValue(appState.currentPrice); if (yCurrent >= chartArea.top && yCurrent <= chartArea.bottom) { ctx.save(); ctx.strokeStyle = 'green'; ctx.setLineDash([5, 5]); ctx.beginPath(); ctx.moveTo(chartArea.left, yCurrent); ctx.lineTo(chartArea.right, yCurrent); ctx.stroke(); ctx.fillStyle = isDarkChartElement() ? '#90EE90' : 'green'; ctx.textAlign = 'right'; ctx.fillText(`현재가: ${appState.currentPrice.toLocaleString()}원`, chartArea.right - 5, yCurrent - 5); ctx.restore(); } }
+            if (appState.targetROI !== 0 && dom.targetPriceResultDiv && dom.targetPriceResultDiv.innerText !== '' && appState.purchases.length > 0) { const targetNetProfit = appState.totalInvestedCost*(appState.targetROI/100); const targetNetMarketValue = appState.totalInvestedCost + targetNetProfit; let targetSellPriceVal = 0; if (appState.totalAmount>0 && (1-appState.fees.sellRate-appState.fees.taxRate)>0) { targetSellPriceVal = targetNetMarketValue/(appState.totalAmount*(1-appState.fees.sellRate-appState.fees.taxRate)); } else if (appState.totalAmount > 0) { targetSellPriceVal = Infinity; } if (targetSellPriceVal > 0 && targetSellPriceVal !== Infinity) { const yTarget = yScale.getPixelForValue(targetSellPriceVal); if (yTarget >= chartArea.top && yTarget <= chartArea.bottom) { ctx.save(); ctx.strokeStyle = 'orange'; ctx.setLineDash([5, 5]); ctx.beginPath(); ctx.moveTo(chartArea.left, yTarget); ctx.lineTo(chartArea.right, yTarget); ctx.stroke(); ctx.fillStyle = isDarkChartElement() ? '#FFD580' : 'orange'; ctx.textAlign = 'left'; ctx.fillText(`목표가(${appState.targetROI}%): ${targetSellPriceVal.toLocaleString()}원`, chartArea.left + 5, yTarget - 5); ctx.restore(); } } }
+        }};
+        avgPriceChartInstance.update('none');
+    }
+    if (volumeChartInstance) {
+        const amountsData = appState.purchases.map(p => p.amount); volumeChartInstance.data.labels = chartLabels;
+        volumeChartInstance.data.datasets = [{ label: '매수 수량', data: amountsData, backgroundColor: 'rgba(54,162,235,0.6)', borderColor: 'rgba(54,162,235,1)', borderWidth: 1 }];
+        volumeChartInstance.update('none');
+    }
+    if (investmentPieChartInstance) {
+        if (appState.purchases.length > 0) {
+            const pieLabels = appState.purchases.map((p, i) => i === 0 ? `최초 (${p.price.toLocaleString()}원, ${p.amount}주)` : `추가 ${i} (${p.price.toLocaleString()}원, ${p.amount}주)`);
+            const pieData = appState.purchases.map(p => p.costWithFee);
+            const baseColors = ['rgba(255,99,132,0.7)','rgba(54,162,235,0.7)','rgba(255,206,86,0.7)','rgba(75,192,192,0.7)','rgba(153,102,255,0.7)','rgba(255,159,64,0.7)','rgba(199,199,199,0.7)','rgba(83,102,83,0.7)','rgba(150,50,90,0.7)','rgba(90,150,50,0.7)'];
+            const backgroundColors = pieLabels.map((_, i) => baseColors[i % baseColors.length]); const borderColors = backgroundColors.map(color => color.replace('0.7', '1'));
+            investmentPieChartInstance.data.labels = pieLabels; investmentPieChartInstance.data.datasets[0].data = pieData;
+            investmentPieChartInstance.data.datasets[0].backgroundColor = backgroundColors; investmentPieChartInstance.data.datasets[0].borderColor = borderColors;
+            investmentPieChartInstance.update('none'); if (dom.investmentPieChartCanvas) dom.investmentPieChartCanvas.style.display = 'block';
+        } else {
+            investmentPieChartInstance.data.labels = []; investmentPieChartInstance.data.datasets[0].data = [];
+            investmentPieChartInstance.update('none'); if (dom.investmentPieChartCanvas) dom.investmentPieChartCanvas.style.display = 'none';
+        }
+    }
+    if (historicalPriceChartInstance) {
+        if (appState.historicalPrices && appState.historicalPrices.length > 0) {
+            const labels = appState.historicalPrices.map(item => {
+                const year = item.date.substring(2, 4); const month = item.date.substring(4, 6); const day = item.date.substring(6, 8);
+                return `${year}/${month}/${day}`;
+            });
+            const data = appState.historicalPrices.map(item => item.price);
+            historicalPriceChartInstance.data.labels = labels;
+            historicalPriceChartInstance.data.datasets[0].data = data;
+            historicalPriceChartInstance.data.datasets[0].label = appState.fetchedStockInfo.name ? `${appState.fetchedStockInfo.name}(${appState.fetchedStockInfo.code}) 일별종가` : '일별 종가';
+            
+            if (historicalPriceChartInstance.options.plugins.annotation && historicalPriceChartInstance.options.plugins.annotation.annotations.avgBuyPriceLine) {
+                const avgPriceAnnotation = historicalPriceChartInstance.options.plugins.annotation.annotations.avgBuyPriceLine;
+                if (appState.purchases.length > 0 && appState.avgBuyPrice > 0) {
+                    avgPriceAnnotation.display = true;
+                    avgPriceAnnotation.yMin = appState.avgBuyPrice;
+                    avgPriceAnnotation.yMax = appState.avgBuyPrice;
+                    avgPriceAnnotation.label.content = `나의 평단가: ${appState.avgBuyPrice.toLocaleString('ko-KR', {minimumFractionDigits:0, maximumFractionDigits:2})}원`;
+                } else { avgPriceAnnotation.display = false; }
+            }
+            historicalPriceChartInstance.update('none');
+            if (dom.priceComparisonChartCanvas) dom.priceComparisonChartCanvas.style.display = 'block';
+        } else {
+            historicalPriceChartInstance.data.labels = [];
+            historicalPriceChartInstance.data.datasets[0].data = [];
+            if (historicalPriceChartInstance.options.plugins.annotation && historicalPriceChartInstance.options.plugins.annotation.annotations.avgBuyPriceLine) {
+                historicalPriceChartInstance.options.plugins.annotation.annotations.avgBuyPriceLine.display = false;
+            }
+            historicalPriceChartInstance.update('none');
+            if (dom.priceComparisonChartCanvas) dom.priceComparisonChartCanvas.style.display = 'none';
+        }
+    }
+    updateDarkModeUI(isDarkChartElement());
 }
+
 function saveData() {
-  const dataToSave = { appState: appState, inputs: { initPrice: dom.initPriceInput.value, initAmount: dom.initAmountInput.value, currentPrice: dom.currentPriceInput.value, targetROI: dom.targetROIInput.value, buyFeeRate: dom.buyFeeRateInput.value, sellFeeRate: dom.sellFeeRateInput.value, taxRate: dom.taxRateInput.value, stockCode: dom.stockCodeInput.value }};
-  localStorage.setItem(LS_KEY_DATA, JSON.stringify(dataToSave));
-  showNotification('데이터가 성공적으로 저장되었습니다.', 'success');
+  const dataToSave = { appState: appState, inputs: { initPrice: dom.initPriceInput.value, initAmount: dom.initAmountInput.value, currentPrice: dom.currentPriceInput.value, targetROI: dom.targetROIInput.value, buyFeeRate: dom.buyFeeRateInput.value, sellFeeRate: dom.sellFeeRateInput.value, taxRate: dom.taxRateInput.value, stockCode: dom.stockCodeInput.value }};
+  localStorage.setItem(LS_KEY_DATA, JSON.stringify(dataToSave));
+  showNotification('데이터가 성공적으로 저장되었습니다.', 'success');
 }
 function loadData() {
-  const savedData = localStorage.getItem(LS_KEY_DATA);
-  if (!savedData) { resetAllData(false); return; }
-  const parsedData = JSON.parse(savedData);
-  if (parsedData.appState) {
-      const defaultFeesFromDOM = { buyRate: parseFloat(dom.buyFeeRateInput.defaultValue||'0.015')/100, sellRate: parseFloat(dom.sellFeeRateInput.defaultValue||'0.015')/100, taxRate: parseFloat(dom.taxRateInput.defaultValue||'0.2')/100 };
-      parsedData.appState.fees = parsedData.appState.fees || defaultFeesFromDOM;
-      if (parsedData.appState.purchases && parsedData.appState.purchases.length > 0) { parsedData.appState.purchases.forEach((p, index) => { if (!p.id) { p.id = index === 0 ? `initial-${Date.now()+index}` : `buyBlock-loaded-${Date.now()+index}`; }}); }
-      Object.assign(appState, parsedData.appState);
-  } else { resetAllData(false); return; }
-  if (parsedData.inputs) {
-      dom.initPriceInput.value = parsedData.inputs.initPrice || ''; dom.initAmountInput.value = parsedData.inputs.initAmount || '';
-      dom.currentPriceInput.value = parsedData.inputs.currentPrice || ''; dom.targetROIInput.value = parsedData.inputs.targetROI || '';
-      dom.buyFeeRateInput.value = parsedData.inputs.buyFeeRate || (appState.fees.buyRate*100).toString();
-      dom.sellFeeRateInput.value = parsedData.inputs.sellFeeRate || (appState.fees.sellRate*100).toString();
-      dom.taxRateInput.value = parsedData.inputs.taxRate || (appState.fees.taxRate*100).toString();
-      dom.stockCodeInput.value = parsedData.inputs.stockCode || '';
-  } else {
-      dom.buyFeeRateInput.value = (appState.fees.buyRate*100).toString(); dom.sellFeeRateInput.value = (appState.fees.sellRate*100).toString(); dom.taxRateInput.value = (appState.fees.taxRate*100).toString();
-  }
-  loadSettings();
-  dom.additionalInputsContainer.innerHTML = '';
-  if (appState.purchases && appState.purchases.length > 1) {
-    appState.purchases.slice(1).forEach((p) => {
-      const block = document.createElement('div'); block.className = 'buy-block'; const blockId = p.id;
-      block.innerHTML = `<div class="input-group"><label for="addPrice-<span class="math-inline">\{blockId\}"\>추가 매수가</label\><input type\="number" id\="addPrice\-</span>{blockId}" value="<span class="math-inline">\{p\.price\}" disabled\></div\><div class\="input\-group"\><label for\="addAmount\-</span>{blockId}">추가 매수량</label><input type="number" id="addAmount-<span class="math-inline">\{blockId\}" value\="</span>{p.amount}" disabled></div><button disabled>✅ 반영됨</button><button class="secondary" onclick="removeBuyBlock(this,'${blockId}')">❌ 반영된 항목 삭제</button>`;
-      dom.additionalInputsContainer.appendChild(block);
-    });
-  }
-  toggleInitialPurchaseInputs(appState.purchases && appState.purchases.length > 0);
-  recalculateAndUpdateUI();
-  showNotification('저장된 데이터를 성공적으로 불러왔습니다.', 'success');
+  const savedData = localStorage.getItem(LS_KEY_DATA);
+  if (!savedData) { resetAllData(false); return; }
+  const parsedData = JSON.parse(savedData);
+  if (parsedData.appState) {
+      const defaultFeesFromDOM = { buyRate: parseFloat(dom.buyFeeRateInput.defaultValue||'0.015')/100, sellRate: parseFloat(dom.sellFeeRateInput.defaultValue||'0.015')/100, taxRate: parseFloat(dom.taxRateInput.defaultValue||'0.2')/100 };
+      parsedData.appState.fees = parsedData.appState.fees || defaultFeesFromDOM;
+      if (parsedData.appState.purchases && parsedData.appState.purchases.length > 0) { parsedData.appState.purchases.forEach((p, index) => { if (!p.id) { p.id = index === 0 ? `initial-${Date.now()+index}` : `buyBlock-loaded-${Date.now()+index}`; }}); }
+      Object.assign(appState, parsedData.appState);
+  } else { resetAllData(false); return; }
+  if (parsedData.inputs) {
+      dom.initPriceInput.value = parsedData.inputs.initPrice || ''; dom.initAmountInput.value = parsedData.inputs.initAmount || '';
+      dom.currentPriceInput.value = parsedData.inputs.currentPrice || ''; dom.targetROIInput.value = parsedData.inputs.targetROI || '';
+      dom.buyFeeRateInput.value = parsedData.inputs.buyFeeRate || (appState.fees.buyRate*100).toString();
+      dom.sellFeeRateInput.value = parsedData.inputs.sellFeeRate || (appState.fees.sellRate*100).toString();
+      dom.taxRateInput.value = parsedData.inputs.taxRate || (appState.fees.taxRate*100).toString();
+      dom.stockCodeInput.value = parsedData.inputs.stockCode || '';
+  } else {
+      dom.buyFeeRateInput.value = (appState.fees.buyRate*100).toString(); dom.sellFeeRateInput.value = (appState.fees.sellRate*100).toString(); dom.taxRateInput.value = (appState.fees.taxRate*100).toString();
+  }
+  loadSettings();
+  dom.additionalInputsContainer.innerHTML = '';
+  if (appState.purchases && appState.purchases.length > 1) {
+    appState.purchases.slice(1).forEach((p) => {
+      const block = document.createElement('div'); block.className = 'buy-block'; const blockId = p.id;
+      block.innerHTML = `<div class="input-group"><label for="addPrice-${blockId}">추가 매수가</label><input type="number" id="addPrice-${blockId}" value="${p.price}" disabled></div><div class="input-group"><label for="addAmount-${blockId}">추가 매수량</label><input type="number" id="addAmount-${blockId}" value="${p.amount}" disabled></div><button disabled>✅ 반영됨</button><button class="secondary" onclick="removeBuyBlock(this,'${blockId}')">❌ 반영된 항목 삭제</button>`;
+      dom.additionalInputsContainer.appendChild(block);
+    });
+  }
+  toggleInitialPurchaseInputs(appState.purchases && appState.purchases.length > 0);
+  recalculateAndUpdateUI();
+  showNotification('저장된 데이터를 성공적으로 불러왔습니다.', 'success');
 }
 function resetAllData(notify = true) {
-  const defaultBuyFee = parseFloat(document.getElementById('buyFeeRate').defaultValue||'0.015')/100;
-  const defaultSellFee = parseFloat(document.getElementById('sellFeeRate').defaultValue||'0.015')/100;
-  const defaultTaxRate = parseFloat(document.getElementById('taxRate').defaultValue||'0.2')/100;
-  appState = { purchases:[], avgBuyPrice:0, totalAmount:0, totalInvestedCost:0, fees:{buyRate:defaultBuyFee, sellRate:defaultSellFee, taxRate:defaultTaxRate}, currentPrice:0, targetROI:0, fetchedStockInfo:{code:'',name:'',price:0,date:''} };
-  if(dom.initPriceInput) dom.initPriceInput.value = ''; 
-  if(dom.initAmountInput) dom.initAmountInput.value = ''; 
-  toggleInitialPurchaseInputs(false);
-  if(dom.additionalInputsContainer) dom.additionalInputsContainer.innerHTML = ''; 
-  if(dom.stockCodeInput) dom.stockCodeInput.value = '';
-  if(dom.buyFeeRateInput) dom.buyFeeRateInput.value = dom.buyFeeRateInput.defaultValue||'0.015'; 
-  if(dom.sellFeeRateInput) dom.sellFeeRateInput.value = dom.sellFeeRateInput.defaultValue||'0.015'; 
-  if(dom.taxRateInput) dom.taxRateInput.value = dom.taxRateInput.defaultValue||'0.2';
-  recalculateAndUpdateUI();
-  if (notify && localStorage.getItem(LS_KEY_DATA)) { localStorage.removeItem(LS_KEY_DATA); showNotification('모든 데이터가 초기화되었습니다.', 'success'); }
-  else if (!localStorage.getItem(LS_KEY_DATA) && !notify && dom.summaryResultDiv && dom.summaryResultDiv.innerHTML.includes('매수 내역이 없습니다')) { showNotification('저장된 데이터가 없습니다. 기본값으로 시작합니다.', 'info');}
+  const defaultBuyFee = parseFloat(document.getElementById('buyFeeRate').defaultValue||'0.015')/100;
+  const defaultSellFee = parseFloat(document.getElementById('sellFeeRate').defaultValue||'0.015')/100;
+  const defaultTaxRate = parseFloat(document.getElementById('taxRate').defaultValue||'0.2')/100;
+  appState = { purchases:[], avgBuyPrice:0, totalAmount:0, totalInvestedCost:0, fees:{buyRate:defaultBuyFee, sellRate:defaultSellFee, taxRate:defaultTaxRate}, currentPrice:0, targetROI:0, fetchedStockInfo:{code:'',name:'',price:0,date:''} };
+  if(dom.initPriceInput) dom.initPriceInput.value = ''; 
+  if(dom.initAmountInput) dom.initAmountInput.value = ''; 
+  toggleInitialPurchaseInputs(false);
+  if(dom.additionalInputsContainer) dom.additionalInputsContainer.innerHTML = ''; 
+  if(dom.stockCodeInput) dom.stockCodeInput.value = '';
+  if(dom.buyFeeRateInput) dom.buyFeeRateInput.value = dom.buyFeeRateInput.defaultValue||'0.015'; 
+  if(dom.sellFeeRateInput) dom.sellFeeRateInput.value = dom.sellFeeRateInput.defaultValue||'0.015'; 
+  if(dom.taxRateInput) dom.taxRateInput.value = dom.taxRateInput.defaultValue||'0.2';
+  recalculateAndUpdateUI();
+  if (notify && localStorage.getItem(LS_KEY_DATA)) { localStorage.removeItem(LS_KEY_DATA); showNotification('모든 데이터가 초기화되었습니다.', 'success'); }
+  else if (!localStorage.getItem(LS_KEY_DATA) && !notify && dom.summaryResultDiv && dom.summaryResultDiv.innerHTML.includes('매수 내역이 없습니다')) { showNotification('저장된 데이터가 없습니다. 기본값으로 시작합니다.', 'info');}
 }
 function downloadExcel() {
-  if (appState.purchases.length === 0) { showNotification('엑셀로 저장할 데이터가 없습니다.', 'error'); return; }
-  const today = new Date(); const dateString = `<span class="math-inline">\{today\.getFullYear\(\)\}</span>{(today.getMonth()+1).toString().padStart(2,'0')}${today.getDate().toString().padStart(2,'0')}`;
-  const fileName = `물타기계산_${dateString}.xlsx`;
-  const ws_data = [
-    ['항목', '값', '비고'],
-    ['조회 종목 정보', appState.fetchedStockInfo.name ? `<span class="math-inline">\{appState\.fetchedStockInfo\.name\}\(</span>{appState.fetchedStockInfo.code}) - ${appState.fetchedStockInfo.date} 기준 ${appState.fetchedStockInfo.price.toLocaleString()}원` : '조회 정보 없음', ''],
-    ['매수 수수료율 (%)', (appState.fees.buyRate * 100).toFixed(3), ''],
-    ['매도 수수료율 (%)', (appState.fees.sellRate * 100).toFixed(3), ''],
-    ['세금율 (%)', (appState.fees.taxRate * 100).toFixed(3), ''],
-    [],
-    ['구분', '매수가(원)', '수량(주)', '매수금액(수수료포함, 원)', '누적평균단가(원)'],
-  ];
-  let cumulativeTotalCost = 0, cumulativeTotalAmount = 0;
-  appState.purchases.forEach((p, i) => {
-    const costWithFee = p.costWithFee; cumulativeTotalCost += costWithFee; cumulativeTotalAmount += p.amount;
-    const cumulativeAvgPrice = cumulativeTotalAmount > 0 ? cumulativeTotalCost / cumulativeTotalAmount : 0;
-    const idDisplay = p.id ? p.id.substring(0,8) : 'N/A';
-    ws_data.push([ i === 0 ? `최초 매수 (ID: ${idDisplay})` : `추가 매수 ${i} (ID: ${idDisplay})`, p.price, p.amount, costWithFee.toFixed(2), cumulativeAvgPrice.toFixed(2) ]);
-  });
-  ws_data.push([]); ws_data.push(['총계']);
-  ws_data.push(['총 보유 수량 (주)', appState.totalAmount]);
-  ws_data.push(['총 투자 원금 (수수료 포함, 원)', appState.totalInvestedCost.toFixed(2)]);
-  ws_data.push(['평균 매수 단가 (수수료 포함, 원)', appState.avgBuyPrice.toFixed(2)]);
+  if (appState.purchases.length === 0) { showNotification('엑셀로 저장할 데이터가 없습니다.', 'error'); return; }
+  const today = new Date(); const dateString = `${today.getFullYear()}${(today.getMonth()+1).toString().padStart(2,'0')}${today.getDate().toString().padStart(2,'0')}`;
+  const fileName = `물타기계산_${dateString}.xlsx`;
+  const ws_data = [
+    ['항목', '값', '비고'],
+    ['조회 종목 정보', appState.fetchedStockInfo.name ? `${appState.fetchedStockInfo.name}(${appState.fetchedStockInfo.code}) - ${appState.fetchedStockInfo.date} 기준 ${appState.fetchedStockInfo.price.toLocaleString()}원` : '조회 정보 없음', ''],
+    ['매수 수수료율 (%)', (appState.fees.buyRate * 100).toFixed(3), ''],
+    ['매도 수수료율 (%)', (appState.fees.sellRate * 100).toFixed(3), ''],
+    ['세금율 (%)', (appState.fees.taxRate * 100).toFixed(3), ''],
+    [],
+    ['구분', '매수가(원)', '수량(주)', '매수금액(수수료포함, 원)', '누적평균단가(원)'],
+  ];
+  let cumulativeTotalCost = 0, cumulativeTotalAmount = 0;
+  appState.purchases.forEach((p, i) => {
+    const costWithFee = p.costWithFee; cumulativeTotalCost += costWithFee; cumulativeTotalAmount += p.amount;
+    const cumulativeAvgPrice = cumulativeTotalAmount > 0 ? cumulativeTotalCost / cumulativeTotalAmount : 0;
+    const idDisplay = p.id ? p.id.substring(0,8) : 'N/A';
+    ws_data.push([ i === 0 ? `최초 매수 (ID: ${idDisplay})` : `추가 매수 ${i} (ID: ${idDisplay})`, p.price, p.amount, costWithFee.toFixed(2), cumulativeAvgPrice.toFixed(2) ]);
+  });
+  ws_data.push([]); ws_data.push(['총계']);
+  ws_data.push(['총 보유 수량 (주)', appState.totalAmount]);
+  ws_data.push(['총 투자 원금 (수수료 포함, 원)', appState.totalInvestedCost.toFixed(2)]);
+  ws_data.push(['평균 매수 단가 (수수료 포함, 원)', appState.avgBuyPrice.toFixed(2)]);
 
-  if (dom.profitResultTableDiv && dom.profitResultTableDiv.innerHTML !== '' && appState.currentPrice > 0) { 
-    ws_data.push([]);
-    ws_data.push(['손익 계산 정보 (현재가: ' + appState.currentPrice.toLocaleString() + '원)']);
-    const grossMarketValue = appState.currentPrice * appState.totalAmount;
-    const netMarketValue = grossMarketValue * (1 - appState.fees.sellRate - appState.fees.taxRate);
-    const profitOrLoss = netMarketValue - appState.totalInvestedCost;
-    const roi = appState.totalInvestedCost > 0 ? (profitOrLoss / appState.totalInvestedCost) * 100 : 0;
-    let breakEvenPrice = 0;
-    if (appState.totalAmount > 0 && (1-appState.fees.sellRate-appState.fees.taxRate)>0) { breakEvenPrice = appState.totalInvestedCost / (appState.totalAmount * (1-appState.fees.sellRate-appState.fees.taxRate)); }
-    else if (appState.totalAmount > 0) breakEvenPrice = Infinity;
-    ws_data.push(['현재 평가 금액 (차감 전)', grossMarketValue.toFixed(2)]);
-    ws_data.push(['예상 순 평가 금액 (차감 후)', netMarketValue.toFixed(2)]);
-    ws_data.push(['예상 순손익', profitOrLoss.toFixed(2)]);
-    ws_data.push(['예상 수익률 (%)', roi.toFixed(2)]);
-    ws_data.push(['손익분기점 주가', breakEvenPrice === Infinity ? "도달 불가능" : breakEvenPrice.toFixed(2)]);
-  }
-  if (dom.targetPriceResultDiv && dom.targetPriceResultDiv.innerText !== '' && appState.targetROI !== 0) {
-    const targetROI = appState.targetROI;
-    const targetNetProfit = appState.totalInvestedCost * (targetROI / 100);
-    const targetNetMarketValue = appState.totalInvestedCost + targetNetProfit;
-    let targetSellPrice = 0;
-    if (appState.totalAmount > 0 && (1-appState.fees.sellRate-appState.fees.taxRate)>0) { targetSellPrice = targetNetMarketValue / (appState.totalAmount * (1-appState.fees.sellRate-appState.fees.taxRate));}
-    else if (appState.totalAmount > 0) targetSellPrice = Infinity;
-    ws_data.push([]);
-    ws_data.push(['목표 수익률 기반 매도 가격 (목표: ' + targetROI + '%)']);
-    ws_data.push(['목표 매도가', targetSellPrice === Infinity ? "도달 불가능" : targetSellPrice.toFixed(2)]);
-    ws_data.push(['예상 순수익 금액', targetNetProfit.toFixed(2)]);
-  }
-  const wb = XLSX.utils.book_new(); const ws = XLSX.utils.aoa_to_sheet(ws_data);
-  if (ws_data.length > 6 && ws_data[6] && ws_data[6].length > 0) { 
-    const colSpecs = ws_data[6].map((_, i) => { let maxLen = 0; ws_data.forEach(row => { if (row[i] && String(row[i]).length > maxLen) maxLen = String(row[i]).length; }); return { wch: Math.max(10, maxLen + 2) }; });
-    ws['!cols'] = colSpecs;
-  }
-  XLSX.utils.book_append_sheet(wb, ws, '투자계산내역'); XLSX.writeFile(wb, fileName);
-  showNotification('엑셀 파일이 성공적으로 다운로드되었습니다.', 'success');
+  if (dom.profitResultTableDiv && dom.profitResultTableDiv.innerHTML !== '' && appState.currentPrice > 0) { 
+    ws_data.push([]);
+    ws_data.push(['손익 계산 정보 (현재가: ' + appState.currentPrice.toLocaleString() + '원)']);
+    const grossMarketValue = appState.currentPrice * appState.totalAmount;
+    const netMarketValue = grossMarketValue * (1 - appState.fees.sellRate - appState.fees.taxRate);
+    const profitOrLoss = netMarketValue - appState.totalInvestedCost;
+    const roi = appState.totalInvestedCost > 0 ? (profitOrLoss / appState.totalInvestedCost) * 100 : 0;
+    let breakEvenPrice = 0;
+    if (appState.totalAmount > 0 && (1-appState.fees.sellRate-appState.fees.taxRate)>0) { breakEvenPrice = appState.totalInvestedCost / (appState.totalAmount * (1-appState.fees.sellRate-appState.fees.taxRate)); }
+    else if (appState.totalAmount > 0) breakEvenPrice = Infinity;
+    ws_data.push(['현재 평가 금액 (차감 전)', grossMarketValue.toFixed(2)]);
+    ws_data.push(['예상 순 평가 금액 (차감 후)', netMarketValue.toFixed(2)]);
+    ws_data.push(['예상 순손익', profitOrLoss.toFixed(2)]);
+    ws_data.push(['예상 수익률 (%)', roi.toFixed(2)]);
+    ws_data.push(['손익분기점 주가', breakEvenPrice === Infinity ? "도달 불가능" : breakEvenPrice.toFixed(2)]);
+  }
+  if (dom.targetPriceResultDiv && dom.targetPriceResultDiv.innerText !== '' && appState.targetROI !== 0) {
+    const targetROI = appState.targetROI;
+    const targetNetProfit = appState.totalInvestedCost * (targetROI / 100);
+    const targetNetMarketValue = appState.totalInvestedCost + targetNetProfit;
+    let targetSellPrice = 0;
+    if (appState.totalAmount > 0 && (1-appState.fees.sellRate-appState.fees.taxRate)>0) { targetSellPrice = targetNetMarketValue / (appState.totalAmount * (1-appState.fees.sellRate-appState.fees.taxRate));}
+    else if (appState.totalAmount > 0) targetSellPrice = Infinity;
+    ws_data.push([]);
+    ws_data.push(['목표 수익률 기반 매도 가격 (목표: ' + targetROI + '%)']);
+    ws_data.push(['목표 매도가', targetSellPrice === Infinity ? "도달 불가능" : targetSellPrice.toFixed(2)]);
+    ws_data.push(['예상 순수익 금액', targetNetProfit.toFixed(2)]);
+  }
+  const wb = XLSX.utils.book_new(); const ws = XLSX.utils.aoa_to_sheet(ws_data);
+  if (ws_data.length > 6 && ws_data[6] && ws_data[6].length > 0) { 
+    const colSpecs = ws_data[6].map((_, i) => { let maxLen = 0; ws_data.forEach(row => { if (row[i] && String(row[i]).length > maxLen) maxLen = String(row[i]).length; }); return { wch: Math.max(10, maxLen + 2) }; });
+    ws['!cols'] = colSpecs;
+  }
+  XLSX.utils.book_append_sheet(wb, ws, '투자계산내역'); XLSX.writeFile(wb, fileName);
+  showNotification('엑셀 파일이 성공적으로 다운로드되었습니다.', 'success');
 }
 function toggleDarkMode() {
-  const isDark = document.body.classList.toggle('dark');
-  localStorage.setItem(LS_KEY_DARK_MODE, isDark ? 'on' : 'off');
-  updateDarkModeUI(isDark);
+  const isDark = document.body.classList.toggle('dark');
+  localStorage.setItem(LS_KEY_DARK_MODE, isDark ? 'on' : 'off');
+  updateDarkModeUI(isDark);
 }
 function updateDarkModeUI(isDark) {
-    if(!dom.darkModeBtn) return;
-    dom.darkModeBtn.innerText = isDark ? '☀️ 라이트모드 ON' : '🌙 다크모드 ON';
-    const colors = { titleColor:isDark?'#e0e0e0':'#333', legendColor:isDark?'#e0e0e0':'#333', tickColor:isDark?'#e0e0e0':'#666', gridColor:isDark?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)'};
-    [avgPriceChartInstance, volumeChartInstance, investmentPieChartInstance, historicalPriceChartInstance].forEach(chart => {
-        if (chart) {
-            if(chart.options.plugins.title) chart.options.plugins.title.color = colors.titleColor;
-            if(chart.options.plugins.legend) chart.options.plugins.legend.labels.color = colors.legendColor;
-            if(chart.options.scales){
-                if(chart.options.scales.x){ chart.options.scales.x.ticks.color = colors.tickColor; chart.options.scales.x.grid.color = colors.gridColor; if(chart.options.scales.x.title) chart.options.scales.x.title.color = colors.titleColor; }
-                if(chart.options.scales.y){ chart.options.scales.y.ticks.color = colors.tickColor; chart.options.scales.y.grid.color = colors.gridColor; if(chart.options.scales.y.title) chart.options.scales.y.title.color = colors.titleColor; }
-            }
-            chart.update('none');
-        }
-    });
+    if(!dom.darkModeBtn) return;
+    dom.darkModeBtn.innerText = isDark ? '☀️ 라이트모드 ON' : '🌙 다크모드 ON';
+    const colors = { titleColor:isDark?'#e0e0e0':'#333', legendColor:isDark?'#e0e0e0':'#333', tickColor:isDark?'#e0e0e0':'#666', gridColor:isDark?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)'};
+    [avgPriceChartInstance, volumeChartInstance, investmentPieChartInstance, historicalPriceChartInstance].forEach(chart => {
+        if (chart) {
+            if(chart.options.plugins.title) chart.options.plugins.title.color = colors.titleColor;
+            if(chart.options.plugins.legend) chart.options.plugins.legend.labels.color = colors.legendColor;
+            if(chart.options.scales){
+                if(chart.options.scales.x){ chart.options.scales.x.ticks.color = colors.tickColor; chart.options.scales.x.grid.color = colors.gridColor; if(chart.options.scales.x.title) chart.options.scales.x.title.color = colors.titleColor; }
+                if(chart.options.scales.y){ chart.options.scales.y.ticks.color = colors.tickColor; chart.options.scales.y.grid.color = colors.gridColor; if(chart.options.scales.y.title) chart.options.scales.y.title.color = colors.titleColor; }
+            }
+            chart.update('none');
+        }
+    });
 }
 </script>
 </body>
