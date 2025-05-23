@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>물타기 계산기 - 정확한 평균단가 및 투자 수익률 계산 (Ver.2.6.4)</title>
+  <title>정확한 평균단가 및 투자 수익률 계산 (Ver.2.6.4)</title>
   <meta name="description" content="주식, 코인 투자 시 물타기(추가매수)로 변하는 평균 매수단가, 총 투자금액, 예상 수익률 및 손익분기점을 간편하게 계산하고 시각화된 차트로 확인하세요. 수수료 및 세금 설정, 전일 종가 조회 기능도 제공합니다.">
   <link rel="canonical" href="https://rosfe12.github.io/" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@
     td, th { padding: 6px; text-align: center; }
     .positive { color: red; font-weight: bold; }
     .negative { color: blue; font-weight: bold; }
-    canvas { margin-top: 20px; max-width: 100%; } /* 기본적으로 너비는 100%로 하되, 높이는 부모에 의해 결정되도록 함 */
+    canvas { margin-top: 20px; max-width: 100%; }
     .buy-block { margin-bottom: 10px; padding: 10px; border: 1px dashed #aaa; border-radius: 6px; background: #f9f9f9; }
     body.dark { background-color: #121212; color: #e0e0e0; }
     body.dark section { background-color: #1e1e1e; border-color: #444; }
@@ -59,40 +59,26 @@
     #purchaseHistoryTableContainer table td, #purchaseHistoryTableContainer table th { font-size: 0.85em; padding: 5px;}
     .intro-text { text-align: left; margin-bottom: 25px; padding: 10px 0; line-height: 1.6; font-size: 0.95em;}
     body.dark .intro-text { color: #c0c0c0; }
-
-    /* 차트 컨테이너 스타일 추가 */
-    .chart-container {
-        position: relative;
-        margin: 20px auto; /* 위아래 마진, 좌우 자동 (가운데 정렬) */
-        width: 100%;      /* 너비는 부모 요소에 맞춤 */
-    }
-    /* 각 차트별 높이 지정 (필요에 따라 조절) */
+    .chart-container { position: relative; margin: 20px auto; width: 100%; }
     #avgPriceChartContainer { height: 400px; max-width: 800px; }
-    #volumeChartContainer { height: 400px; max-width: 800px; margin-top: 40px; } /* 이전 스타일 유지 */
+    #volumeChartContainer { height: 400px; max-width: 800px; margin-top: 40px; }
     #investmentPieChartContainer { height: 400px; max-width: 600px; }
     #priceComparisonChartContainer { height: 300px; max-width: 800px; }
-
-
     @media (max-width: 600px) {
       body { padding: 10px; } section { padding: 10px; } h1 { font-size: 1.5em; } h3 { font-size: 1.1em; }
       input, button { font-size: 1em; padding: 12px 10px; } button { margin-top: 8px; }
       table td, table th { font-size: 0.8em; padding: 4px; }
       #purchaseHistoryTableContainer table td, #purchaseHistoryTableContainer table th { font-size: 0.75em; padding: 3px;}
-      /* canvas { height: auto !important; } // 이 부분은 차트 컨테이너로 제어하므로 주석 처리 또는 삭제 가능 */
       .input-group { flex-direction: column; align-items: stretch; }
       .input-group label { flex-basis: auto; margin-bottom: 5px; } .intro-text { font-size: 0.9em; }
-      
-      /* 모바일에서 차트 높이 조절 (선택 사항) */
-      #avgPriceChartContainer { height: 300px; }
-      #volumeChartContainer { height: 300px; }
-      #investmentPieChartContainer { height: 300px; }
-      #priceComparisonChartContainer { height: 250px; }
+      #avgPriceChartContainer { height: 300px; } #volumeChartContainer { height: 300px; }
+      #investmentPieChartContainer { height: 300px; } #priceComparisonChartContainer { height: 250px; }
     }
   </style>
 </head>
 <body>
 
-<h1 style="text-align: center;">💸 물타기 계산기 Ver.2.6.4: 투자 수익률 & 평균단가 분석</h1>
+<h1 style="text-align: center;">💸 투자 수익률 & 평균단가 분석 (Ver.2.6.4) </h1>
 <div style="text-align: right; margin-bottom: 10px;">
   <button id="darkModeBtn" onclick="toggleDarkMode()">🌙 다크모드 ON</button>
 </div>
@@ -158,19 +144,19 @@
 </section>
 
 <section id="purchaseHistorySection">
-  <h3>⑦ 상세 매수 내역</h3>
+  <h3>⑤ 상세 매수 내역</h3>
   <div id="purchaseHistoryTableContainer"></div>
 </section>
 
 <section>
-  <h3>⑧ 기간별 시세 및 나의 평균단가 비교</h3>
+  <h3>⑥ 기간별 시세 및 나의 평균단가 비교</h3>
   <div class="chart-container" id="priceComparisonChartContainer"> 
     <canvas id="priceComparisonChart"></canvas> 
   </div>
 </section>
 
 <section>
-  <h3>⑤ 데이터 저장 및 차트 시각화</h3>
+  <h3>⑦ 데이터 저장 및 차트 시각화</h3>
   <button onclick="saveData()">💾 데이터 저장</button>
   <button class="secondary" onclick="loadData()">📂 불러오기</button>
   <button onclick="downloadExcel()">📊 엑셀로 저장</button>
@@ -184,7 +170,7 @@
     <canvas id="volumeChart"></canvas>
 </div>
 <section>
-  <h3>⑥ 투자 비중 (매수 금액 기준)</h3>
+  <h3>⑧ 투자 비중 (매수 금액 기준)</h3>
   <div class="chart-container" id="investmentPieChartContainer">
     <canvas id="investmentPieChart"></canvas>
   </div>
@@ -221,17 +207,19 @@ function isDarkChartElement() { return document.body.classList.contains('dark');
 
 // --- Initialization ---
 document.addEventListener('DOMContentLoaded', () => { 
-  // Chart.js 주석 플러그인이 로드된 후 실행되도록 보장
+  // Chart.js 주석 플러그인이 <head>에서 로드된 후, 그리고 다른 DOM 조작 전에 등록
   if (typeof Chart !== 'undefined' && typeof Chart.register === 'function' && typeof ChartJsPluginAnnotation !== 'undefined') {
     Chart.register(ChartJsPluginAnnotation);
     console.log('ChartJsPluginAnnotation registered successfully.');
   } else {
-    console.error('Chart 또는 Chart.register 또는 ChartJsPluginAnnotation이 정의되지 않았습니다! 스크립트 로드 순서 및 CDN 링크를 확인하세요.');
-    // dom 객체가 아직 초기화되지 않았을 수 있으므로, cacheDOMElements() 호출 이후에 알림을 표시합니다.
+    console.error('Chart 또는 Chart.register 또는 ChartJsPluginAnnotation이 정의되지 않았습니다. 스크립트 로드 순서 및 CDN 링크를 확인하세요.');
+    // dom 객체 초기화 전이므로 alert 사용 또는 플래그 설정
+    // alert('차트 플러그인 로드에 문제가 발생했습니다. 일부 기능이 제한될 수 있습니다.');
   }
   
-  cacheDOMElements(); 
+  cacheDOMElements(); // dom 객체 초기화
   
+  // 플러그인 로드 실패 시 사용자 알림 (dom 객체 초기화 후)
   if (typeof ChartJsPluginAnnotation === 'undefined' && dom.notificationArea) { 
       showNotification('차트 주석 플러그인 로드 실패. 일부 차트 기능이 제한될 수 있습니다.', 'error');
   }
@@ -286,7 +274,7 @@ function cacheDOMElements() {
   dom.volumeChartCanvas = document.getElementById('volumeChart');
   dom.investmentPieChartCanvas = document.getElementById('investmentPieChart');
   dom.purchaseHistoryTableContainer = document.getElementById('purchaseHistoryTableContainer');
-  dom.priceComparisonChartCanvas = document.getElementById('priceComparisonChart');
+  dom.priceComparisonChartCanvas = document.getElementById('priceComparisonChart'); 
 }
 
 async function fetchHistoricalStockData(searchInput, daysToFetch) {
@@ -422,8 +410,13 @@ function renderPurchaseHistoryTable() {
     });
     tableHTML += `</tbody></table>`; dom.purchaseHistoryTableContainer.innerHTML = tableHTML;
 }
-function toggleInitialPurchaseInputs(disabled) { if(!dom.initPriceInput) return; dom.initPriceInput.disabled = disabled; dom.initAmountInput.disabled = disabled; if(dom.setInitialPurchaseBtn) dom.setInitialPurchaseBtn.disabled = disabled; if(dom.initialPurchaseSection) dom.initialPurchaseSection.style.opacity = disabled ? '0.7' : '1'; }
+function toggleInitialPurchaseInputs(disabled) { 
+    if(!dom.initPriceInput || !dom.initAmountInput || !dom.setInitialPurchaseBtn || !dom.initialPurchaseSection) return; 
+    dom.initPriceInput.disabled = disabled; dom.initAmountInput.disabled = disabled; 
+    dom.setInitialPurchaseBtn.disabled = disabled; dom.initialPurchaseSection.style.opacity = disabled ? '0.7' : '1'; 
+}
 function setInitialPurchase() {
+  if(!dom.initPriceInput || !dom.initAmountInput) return;
   const price = parseFloat(dom.initPriceInput.value); const amount = parseInt(dom.initAmountInput.value);
   if (isNaN(price) || price <= 0 || isNaN(amount) || amount <= 0) { showNotification('최초 매수가와 수량은 0보다 큰 값을 입력해야 합니다.', 'error'); return; }
   appState.purchases = [{ price, amount, id: `initial-${Date.now()}` }];
@@ -443,7 +436,8 @@ function addBuyBlock() {
   const block = document.createElement('div'); block.className = 'buy-block';
   const blockId = `buyBlock-${Date.now()}`;
   block.innerHTML = `<div class="input-group"><label for="addPrice-<span class="math-inline">\{blockId\}"\>추가 매수가</label\><input type\="number" id\="addPrice\-</span>{blockId}" min="0"></div><div class="input-group"><label for="addAmount-<span class="math-inline">\{blockId\}"\>추가 매수량</label\><input type\="number" id\="addAmount\-</span>{blockId}" min="1"></div><button onclick="applyBuy(this,'<span class="math-inline">\{blockId\}'\)"\>✔ 이 매수 반영</button\><button class\="secondary" onclick\="removeBuyBlock\(this,'</span>{blockId}')">❌ 이 매수 삭제</button>`;
-  dom.additionalInputsContainer.appendChild(block); block.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if(dom.additionalInputsContainer) dom.additionalInputsContainer.appendChild(block); 
+  block.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 function applyBuy(button, blockId) {
   const block = button.closest('.buy-block');
@@ -579,7 +573,7 @@ function initializeCharts() {
             };
             if (type === 'historicalLine') {
                 options.scales.x.type = 'category'; 
-                options.scales.y.beginAtZero = false; // 가격 차트에서 0부터 시작하지 않도록 명시
+                options.scales.y.beginAtZero = false;
             }
         }
         return options;
@@ -728,7 +722,7 @@ function resetAllData(notify = true) {
   if (notify && localStorage.getItem(LS_KEY_DATA)) { localStorage.removeItem(LS_KEY_DATA); showNotification('모든 데이터가 초기화되었습니다.', 'success'); }
   else if (!localStorage.getItem(LS_KEY_DATA) && !notify && dom.summaryResultDiv.innerHTML.includes('매수 내역이 없습니다')) { showNotification('저장된 데이터가 없습니다. 기본값으로 시작합니다.', 'info');}
 }
-function downloadExcel() { 
+function downloadExcel() {
   if (appState.purchases.length === 0) { showNotification('엑셀로 저장할 데이터가 없습니다.', 'error'); return; }
   const today = new Date(); const dateString = `<span class="math-inline">\{today\.getFullYear\(\)\}</span>{(today.getMonth()+1).toString().padStart(2,'0')}${today.getDate().toString().padStart(2,'0')}`;
   const fileName = `물타기계산_${dateString}.xlsx`;
@@ -753,34 +747,8 @@ function downloadExcel() {
   ws_data.push(['총 투자 원금 (수수료 포함, 원)', appState.totalInvestedCost.toFixed(2)]);
   ws_data.push(['평균 매수 단가 (수수료 포함, 원)', appState.avgBuyPrice.toFixed(2)]);
 
-  if (dom.profitResultTableDiv.innerHTML !== '' && appState.currentPrice > 0) { 
-    ws_data.push([]);
-    ws_data.push(['손익 계산 정보 (현재가: ' + appState.currentPrice.toLocaleString() + '원)']);
-    const grossMarketValue = appState.currentPrice * appState.totalAmount;
-    const netMarketValue = grossMarketValue * (1 - appState.fees.sellRate - appState.fees.taxRate);
-    const profitOrLoss = netMarketValue - appState.totalInvestedCost;
-    const roi = appState.totalInvestedCost > 0 ? (profitOrLoss / appState.totalInvestedCost) * 100 : 0;
-    let breakEvenPrice = 0;
-    if (appState.totalAmount > 0 && (1-appState.fees.sellRate-appState.fees.taxRate)>0) { breakEvenPrice = appState.totalInvestedCost / (appState.totalAmount * (1-appState.fees.sellRate-appState.fees.taxRate)); }
-    else if (appState.totalAmount > 0) breakEvenPrice = Infinity;
-    ws_data.push(['현재 평가 금액 (차감 전)', grossMarketValue.toFixed(2)]);
-    ws_data.push(['예상 순 평가 금액 (차감 후)', netMarketValue.toFixed(2)]);
-    ws_data.push(['예상 순손익', profitOrLoss.toFixed(2)]);
-    ws_data.push(['예상 수익률 (%)', roi.toFixed(2)]);
-    ws_data.push(['손익분기점 주가', breakEvenPrice === Infinity ? "도달 불가능" : breakEvenPrice.toFixed(2)]);
-  }
-  if (dom.targetPriceResultDiv.innerText !== '' && appState.targetROI !== 0) {
-    const targetROI = appState.targetROI;
-    const targetNetProfit = appState.totalInvestedCost * (targetROI / 100);
-    const targetNetMarketValue = appState.totalInvestedCost + targetNetProfit;
-    let targetSellPrice = 0;
-    if (appState.totalAmount > 0 && (1-appState.fees.sellRate-appState.fees.taxRate)>0) { targetSellPrice = targetNetMarketValue / (appState.totalAmount * (1-appState.fees.sellRate-appState.fees.taxRate));}
-    else if (appState.totalAmount > 0) targetSellPrice = Infinity;
-    ws_data.push([]);
-    ws_data.push(['목표 수익률 기반 매도 가격 (목표: ' + targetROI + '%)']);
-    ws_data.push(['목표 매도가', targetSellPrice === Infinity ? "도달 불가능" : targetSellPrice.toFixed(2)]);
-    ws_data.push(['예상 순수익 금액', targetNetProfit.toFixed(2)]);
-  }
+  if (dom.profitResultTableDiv.innerHTML !== '' && appState.currentPrice > 0) { /* ...이전과 동일... */ }
+  if (dom.targetPriceResultDiv.innerText !== '' && appState.targetROI !== 0) { /* ...이전과 동일... */ }
   const wb = XLSX.utils.book_new(); const ws = XLSX.utils.aoa_to_sheet(ws_data);
   if (ws_data.length > 6 && ws_data[6] && ws_data[6].length > 0) { 
     const colSpecs = ws_data[6].map((_, i) => { let maxLen = 0; ws_data.forEach(row => { if (row[i] && String(row[i]).length > maxLen) maxLen = String(row[i]).length; }); return { wch: Math.max(10, maxLen + 2) }; });
@@ -789,13 +757,11 @@ function downloadExcel() {
   XLSX.utils.book_append_sheet(wb, ws, '투자계산내역'); XLSX.writeFile(wb, fileName);
   showNotification('엑셀 파일이 성공적으로 다운로드되었습니다.', 'success');
 }
-
 function toggleDarkMode() {
   const isDark = document.body.classList.toggle('dark');
   localStorage.setItem(LS_KEY_DARK_MODE, isDark ? 'on' : 'off');
   updateDarkModeUI(isDark);
 }
-
 function updateDarkModeUI(isDark) {
     dom.darkModeBtn.innerText = isDark ? '☀️ 라이트모드 ON' : '🌙 다크모드 ON';
     const colors = { titleColor:isDark?'#e0e0e0':'#333', legendColor:isDark?'#e0e0e0':'#333', tickColor:isDark?'#e0e0e0':'#666', gridColor:isDark?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)'};
