@@ -408,7 +408,14 @@ function renderPurchaseHistoryTable() {
         const tempCumulativeAmount = cumulativeAmount + p.amount;
         const tempCumulativeInvestedCost = cumulativeInvestedCost + p.costWithFee;
         const currentPurchaseCumulativeAvgPrice = tempCumulativeAmount > 0 ? tempCumulativeInvestedCost / tempCumulativeAmount : 0;
-        tableHTML += `<tr><td><span class="math-inline">\{purchaseName\}</td\><td\></span>{p.price.toLocaleString()}</td><td><span class="math-inline">\{p\.amount\.toLocaleString\(\)\}</td\><td\></span>{purchaseCostNoFee.toLocaleString('ko-KR', {minimumFractionDigits:0,maximumFractionDigits:0})}</td><td><span class="math-inline">\{buyFeeAmount\.toLocaleString\('ko\-KR',\{minimumFractionDigits\:2,maximumFractionDigits\:2\}\)\}</td\><td\></span>{p.costWithFee.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})}</td><td><span class="math-inline">\{currentPurchaseCumulativeAvgPrice\.toLocaleString\('ko\-KR',\{minimumFractionDigits\:2,maximumFractionDigits\:2\}\)\}</td\><td\></span>{tempCumulativeAmount.toLocaleString()}</td><td>${tempCumulativeInvestedCost.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})}</td></tr>`;
+        tableHTML += `<tr>
+        <td>${purchaseName}</td><td>${p.price.toLocaleString()}</td><td>${p.amount.toLocaleString()}</td>
+        <td>${purchaseCostNoFee.toLocaleString('ko-KR', {minimumFractionDigits: 0, maximumFractionDigits: 0})}</td>
+        <td>${buyFeeAmount.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+        <td>${p.costWithFee.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+        <td>${currentPurchaseCumulativeAvgPrice.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+        <td>${tempCumulativeAmount.toLocaleString()}</td>
+        <td>${tempCumulativeInvestedCost.toLocaleString('ko-KR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>`;     
         cumulativeAmount = tempCumulativeAmount; cumulativeInvestedCost = tempCumulativeInvestedCost;
     });
     tableHTML += `</tbody></table>`; dom.purchaseHistoryTableContainer.innerHTML = tableHTML;
@@ -436,10 +443,17 @@ function clearInitialPurchase() {
   recalculateAndUpdateUI(); toggleInitialPurchaseInputs(false); showNotification('최초 매수 정보가 초기화되었습니다.', 'info');
 }
 function addBuyBlock() {
-  if (appState.purchases.length === 0) { showNotification('최초 매수를 먼저 입력해주세요.', 'error'); return; }
-  const block = document.createElement('div'); block.className = 'buy-block';
+  if (appState.purchases.length === 0) { 
+    showNotification('최초 매수를 먼저 입력해주세요.', 'error'); 
+    return; 
+  }
+  const block = document.createElement('div'); 
+  block.className = 'buy-block';
   const blockId = `buyBlock-${Date.now()}`;
-  block.innerHTML = `<div class="input-group"><label for="addPrice-<span class="math-inline">\{blockId\}"\>추가 매수가</label\><input type\="number" id\="addPrice\-</span>{blockId}" min="0"></div><div class="input-group"><label for="addAmount-<span class="math-inline">\{blockId\}"\>추가 매수량</label\><input type\="number" id\="addAmount\-</span>{blockId}" min="1"></div><button onclick="applyBuy(this,'<span class="math-inline">\{blockId\}'\)"\>✔ 이 매수 반영</button\><button class\="secondary" onclick\="removeBuyBlock\(this,'</span>{blockId}')">❌ 이 매수 삭제</button>`;
+  
+  // ★★★ blockId 변수가 올바르게 ${blockId} 형태로 사용되었는지 확인 ★★★
+  block.innerHTML = `<div class="input-group"><label for="addPrice-${blockId}">추가 매수가 (원)</label><input type="number" id="addPrice-${blockId}" min="0"></div><div class="input-group"><label for="addAmount-${blockId}">추가 매수량 (주)</label><input type="number" id="addAmount-${blockId}" min="1"></div><button onclick="applyBuy(this, '${blockId}')">✔ 이 매수 반영</button><button class="secondary" onclick="removeBuyBlock(this, '${blockId}')">❌ 이 매수 삭제</button>`;
+  
   if(dom.additionalInputsContainer) dom.additionalInputsContainer.appendChild(block); 
   block.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
