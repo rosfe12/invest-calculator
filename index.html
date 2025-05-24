@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>물타기 계산기 - 정확한 평균단가 및 투자 수익률 계산 (Ver.2.6.5)</title>
-  <meta name="description" content="주식, 코인 투자 시 물타기(추가매수)로 변하는 평균 매수단가, 총 투자금액, 예상 수익률 및 손익분기점을 간편하게 계산하고 시각화된 차트로 확인하세요. 수수료 및 세금 설정, 전일 종가 조회 기능도 제공합니다.">
+   <meta name="description" content="주식, 코인 투자 시 물타기(추가매수)로 변하는 평균 매수단가, 총 투자금액, 예상 수익률 및 손익분기점을 간편하게 계산하고 시각화된 차트로 확인하세요. 수수료 및 세금 설정, 전일 종가 조회 기능도 제공합니다.">
   <link rel="canonical" href="https://rosfe12.github.io/" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
   
@@ -208,21 +208,18 @@ function isDarkChartElement() { return document.body.classList.contains('dark');
 
 // --- Initialization ---
 document.addEventListener('DOMContentLoaded', () => { 
-  // 1. DOM 요소 캐싱을 가장 먼저 수행 (showNotification 등에서 dom 객체를 사용하기 때문)
+  // 1. DOM 요소 캐싱을 가장 먼저 수행
   cacheDOMElements(); 
   
   // 2. Chart.js 및 플러그인 등록 (DOM 요소 캐싱 후)
-  // Chart, Chart.register, ChartJsPluginAnnotation이 모두 정의되었는지 확인 후 등록
   if (typeof Chart !== 'undefined' && typeof Chart.register === 'function' && typeof ChartJsPluginAnnotation !== 'undefined') {
-    Chart.register(ChartJsPluginAnnotation); // 전역 Chart 객체에 플러그인 등록
+    Chart.register(ChartJsPluginAnnotation);
     console.log('ChartJsPluginAnnotation registered successfully.');
   } else {
     console.error('Chart 또는 Chart.register 또는 ChartJsPluginAnnotation이 정의되지 않았습니다. 스크립트 로드 순서 및 CDN 링크를 확인하세요.');
-    // dom 객체가 초기화 된 이후이므로 showNotification 사용 가능
     if (dom.notificationArea) { 
         showNotification('차트 플러그인 로드 실패. 일부 차트 기능이 제한될 수 있습니다.', 'error');
     } else {
-        // dom.notificationArea가 아직 없는 극초기 단계라면 alert 사용 (이 경우는 cacheDOMElements가 먼저 호출되므로 드묾)
         alert('차트 플러그인 로드에 문제가 발생했습니다. 일부 기능이 제한될 수 있습니다.'); 
     }
   }
